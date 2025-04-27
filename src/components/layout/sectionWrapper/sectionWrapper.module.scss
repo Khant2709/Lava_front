@@ -1,0 +1,30 @@
+@use "./src/styles/variables" as *;
+@use "./src/styles/mixins" as *;
+
+.section {
+  width: 100%;
+  max-width: $screen_w_max;
+
+  margin: 0 auto 4rem;
+
+  @include flex_col;
+  gap: 4rem;
+
+  @media (max-width: 1500px) {
+    padding: 0 3rem;
+  }
+
+  @media (max-width: 768px) {
+    gap: 2rem;
+    padding: 0 1.5rem;
+    margin-bottom: 2rem;
+  }
+}
+
+.mt {
+  margin-top: 4rem;
+
+  @media (max-width: 768px) {
+    margin-top: 2rem;
+  }
+}

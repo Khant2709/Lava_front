@@ -1,0 +1,11 @@
+@use "./src/styles/variables" as *;
+@use "./src/styles/functions" as *;
+
+.title {
+  font-size: fluid-size(24, 48);
+  font-weight: 400;
+  color: $color_text_white;
+
+  padding-bottom: 8px;
+  border-bottom: 2px solid $color_purple;
+}

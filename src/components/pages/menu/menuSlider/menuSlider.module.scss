@@ -1,0 +1,110 @@
+@use "./src/styles/variables" as *;
+@use "./src/styles/functions" as *;
+@use "./src/styles/mixins" as *;
+
+.swiper {
+  width: 100%;
+  border-radius: $border_r;
+}
+
+.slide {
+  @extend .swiper;
+  background-color: $color_bg_secondary;
+}
+
+.cardMenu {
+  width: 100%;
+  height: auto;
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+
+  @media (max-width: 768px) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.imageMenu {
+  width: 100%;
+  height: auto;
+  @include bg_params;
+}
+
+.descriptionMenu {
+  width: 100%;
+  height: auto;
+
+  @media (max-width: 768px) {
+    @include bg_params;
+  }
+}
+
+.wrapperDescription {
+  background-color: $color_bg_secondary;
+  padding: 2rem;
+
+  @include flex_col;
+  gap: 2rem;
+
+  @media (max-width: 768px) {
+    background-color: $color_bg_secondary_85;
+  }
+}
+
+.title {
+  font-size: fluid-size(20, 32);
+  font-weight: bold;
+  letter-spacing: 1px;
+  color: $color_purple;
+}
+
+.containerProducts {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+
+  @media (max-width: 1000px) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.boxProduct {
+  @include flex_col;
+  gap: 1rem;
+}
+
+.headerProduct {
+  font-weight: 300;
+
+  padding-bottom: 8px;
+  border-bottom: 1px solid $color_text_grey;
+
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.name {
+  font-size: fluid-size(18, 20);
+}
+
+.price {
+  font-size: fluid-size(18, 24);
+  color: $color_purple;
+}
+
+
+.descriptionProduct {
+  font-size: fluid-size(14, 16);
+  letter-spacing: 1px;
+  color: $color_text_grey_light;
+}
+
+.notes {
+  width: 100%;
+  font-weight: 300;
+  font-size: 14px;
+  letter-spacing: 1px;
+  color: $color_text_grey_light;
+  padding-top: 1rem;
+  border-top: 1px solid $color_text_grey;
+}

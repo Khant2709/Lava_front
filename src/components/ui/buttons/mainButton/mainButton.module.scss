@@ -1,0 +1,48 @@
+@use "./src/styles/variables" as *;
+@use "./src/styles/functions" as *;
+
+.button {
+  font-size: fluid-size(16, 32);
+  font-weight: 300;
+  color: #ffffff;
+  letter-spacing: 2px;
+
+  padding: 1.5rem 4rem;
+
+  border-radius: $border_r;
+  border: 2px solid rgba(156, 163, 175, 0.5);
+  background: linear-gradient(to right, #1e1b4b, #6366f1);
+
+  position: relative;
+  overflow: hidden;
+
+  transition: all 0.2s ease-in-out;
+
+  &:active {
+    transform: scale(0.95);
+  }
+
+  &::before {
+    content: "";
+    background: linear-gradient(90deg, rgba(255, 255, 255, .1), rgba(255, 255, 255, .5));
+    height: 100px;
+    width: 50px;
+    position: absolute;
+    top: -10px;
+    left: -110px;
+    transform: skewX(-45deg);
+  }
+
+  &:hover {
+    cursor: pointer;
+
+    &::before {
+      left: 550px;
+      transition: .5s ease-in-out;
+    }
+  }
+
+  @media (max-width: 768px) {
+    padding: 1rem 2rem;
+  }
+}

@@ -1,0 +1,3 @@
+@function fluid-size($min-size, $max-size, $min-vw: 480, $max-vw: 1920) {
+  @return calc(#{$min-size}px + (#{$max-size} - #{$min-size}) * ((100vw - #{$min-vw}px) / (#{$max-vw} - #{$min-vw})));
+}

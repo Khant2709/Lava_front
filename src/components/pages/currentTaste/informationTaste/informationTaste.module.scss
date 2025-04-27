@@ -1,0 +1,71 @@
+@use "./src/styles/variables" as *;
+@use "./src/styles/functions" as *;
+@use "./src/styles/mixins" as *;
+
+.containerMain {
+  width: 100%;
+
+  padding: 2rem;
+  border-left: 4px solid $color_purple;
+  background-color: $color_bg_secondary;
+  border-radius: $border_r;
+
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 2rem;
+
+  @media (max-width: 600px) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.image {
+  width: 100%;
+  height: auto;
+  justify-self: flex-end;
+
+  border-radius: $border_r;
+}
+
+.card {
+
+  @include flex_col;
+  gap: 1rem;
+}
+
+.brand {
+  color: $color_text_grey;
+}
+
+.name {
+  font-size: fluid-size(20, 28);
+  color: $color_purple;
+}
+
+.name_ru {
+  font-size: fluid-size(16, 20);
+}
+
+.box {
+  @include flex_col;
+  gap: 8px;
+}
+
+.subtitle {
+  color: $color_text_grey;
+}
+
+.valueBox {
+
+}
+
+.boxCategory {
+  display: flex;
+  gap: 1rem;
+
+  p {
+    padding: 10px 16px;
+    background-color: $color_purple_25;
+    border-radius: $border_r;
+  }
+}

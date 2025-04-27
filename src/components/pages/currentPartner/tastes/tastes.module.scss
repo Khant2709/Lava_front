@@ -1,0 +1,130 @@
+@use "./src/styles/variables" as *;
+@use "./src/styles/mixins" as *;
+@use "./src/styles/functions" as *;
+
+.containerMain {
+  @include flex_col;
+  gap: 2rem;
+}
+
+.containerCategories {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.buttonCategory {
+  padding: 16px 24px;
+
+  color: $color_text_white;
+  font-size: fluid-size(14, 20);
+  letter-spacing: 2px;
+
+  border: none;
+  border-radius: $border_r;
+  background-color: $color_bg_secondary;
+
+  &:hover {
+    @extend .activeButton;
+    cursor: pointer;
+  }
+}
+
+.activeButton {
+  background-color: $color_purple;
+}
+
+
+// Блок карточек вкусов
+.containerTastes {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 2rem;
+
+  @media (max-width: 1440px) {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  @media (max-width: 900px) {
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+  }
+
+  @media (max-width: 480px) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.cardTaste {
+  position: relative;
+
+  padding: 1rem;
+  border-radius: $border_r;
+  background-color: $color_bg_secondary;
+
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+}
+
+.imageTaste {
+  width: 100%;
+  height: auto;
+  border-radius: $border_r;
+
+  align-self: center;
+}
+
+.infoTaste {
+  @include flex_col;
+  align-items: flex-start;
+  gap: 8px;
+}
+
+.nameTaste {
+  font-size: fluid-size(16, 20);
+  font-weight: 700;
+  color: $color_purple;
+}
+
+.nameRuTaste {
+  font-size: 16px;
+}
+
+.descriptionTaste {
+  color: $color_text_grey;
+  margin: 8px 0;
+}
+
+.buttonCard {
+  font-size: 14px;
+  letter-spacing: 1px;
+  color: $color_text_white;
+
+  border: none;
+  background: none;
+
+  &:hover {
+    cursor: pointer;
+    color: $color_purple;
+
+  }
+}
+
+.categoriesBox {
+  position: absolute;
+  top: 1rem;
+  right: -1px;
+
+  text-align: right;
+
+  @include flex_col;
+  gap: 8px;
+}
+
+.category {
+  font-size: fluid-size(14, 16);
+  padding: 8px 10px;
+  border-radius: 8px 0 0 8px;
+  background-image: $gradient_card;
+}

@@ -1,0 +1,94 @@
+@use "./src/styles/variables" as *;
+@use "./src/styles/functions" as *;
+@use "./src/styles/mixins" as *;
+
+.containerArticles {
+  width: 100%;
+
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+
+  @media (max-width: 1100px) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @media (max-width: 768px) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.cardArticle {
+  width: 100%;
+  background-color: $color_bg_2;
+  border: 2px solid $color_purple;
+  border-radius: $border_r;
+  padding: 1.5rem;
+
+  @include flex_col;
+  justify-content: space-between;
+  gap: 1.5rem;
+}
+
+.wrapperBox {
+  width: 100%;
+  @include flex_col;
+  gap: 1.5rem;
+}
+
+.headerBox {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.category {
+  letter-spacing: 1px;
+  padding: 10px 16px;
+  border-radius: $border_r;
+}
+
+.category_news {
+  background-color: $color_purple;
+}
+
+.category_tips {
+  background-color: #01a21c;
+}
+
+.category_events {
+  background-image: $gradient_card;
+}
+
+.date {
+  color: $color_text_grey;
+  font-size: fluid-size(14, 16);
+}
+
+.title {
+  font-size: fluid-size(16, 20);
+}
+
+.description {
+  color: $color_text_grey_light;
+  text-indent: 16px;
+}
+
+.footerBox {
+  @extend .headerBox;
+  align-items: flex-end;
+  justify-self: flex-end;
+}
+
+.timeRead {
+  color: $color_purple_50;
+  font-size: fluid-size(14, 16);
+}
+
+.link {
+  &:hover {
+    cursor: pointer;
+    color: $color_purple;
+  }
+}

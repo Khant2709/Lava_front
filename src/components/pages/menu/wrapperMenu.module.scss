@@ -1,0 +1,9 @@
+@use "./src/styles/functions" as *;
+
+.text {
+  width: 90%;
+  margin: 0 auto;
+  font-size: fluid-size(16, 24);
+  letter-spacing: 1px;
+  text-align: center;
+}

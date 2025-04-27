@@ -1,0 +1,44 @@
+@use "./src/styles/variables" as *;
+@use "./src/styles/mixins" as *;
+@use "./src/styles/functions" as *;
+
+.container {
+  width: 80%;
+  min-height: 50vh;
+  padding: 0 2rem;
+  margin: 0 auto;
+  text-align: center;
+
+  @include flex_col;
+  align-items: center;
+  justify-content: center;
+  gap: 1.5rem;
+
+  @media (max-width: 768px) {
+    width: 100%;
+    gap: 1rem;
+  }
+}
+
+.icon {
+  font-size: 6rem;
+
+  @media (max-width: 768px) {
+    font-size: 4rem;
+  }
+}
+
+.title {
+  font-size: fluid-size(24, 40);
+  color: $color_purple;
+  letter-spacing: 1px;
+}
+
+.text {
+  font-size: fluid-size(16, 24);
+  color: $color_text_grey_light;
+}
+
+.info {
+  color: $color_text_grey;
+}

@@ -1,0 +1,83 @@
+@use "./src/styles/variables" as *;
+@use "./src/styles/mixins" as *;
+@use "./src/styles/functions" as *;
+
+.footer {
+  background-color: $color_bg_secondary;
+
+  padding: 2rem;
+
+
+  display: flex;
+  justify-content: space-between;
+  gap: 2rem;
+
+  @media (max-width: 768px) {
+    flex-direction: column;
+    justify-content: flex-start;
+  }
+}
+
+.firstColumn {
+  @include flex_col;
+  gap: 2rem;
+}
+
+.boxLogo {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.logo {
+  width: 3rem;
+  height: auto;
+}
+
+.logoName {
+  width: 6rem;
+  height: auto;
+}
+
+.boxNavbar {
+  @include flex_col;
+  gap: 1rem;
+
+  a {
+    font-size: fluid-size(16, 20);
+    &:hover {
+      color: $color_purple;
+    }
+  }
+}
+
+.activeLink {
+  color: $color_purple;
+}
+
+// SECOND COLUMN
+
+.secondColumn {
+  @include flex_col;
+  gap: 1.5rem;
+
+  h3 {
+    color: $color_purple;
+  }
+}
+
+.boxContact {
+  @include flex_col;
+  gap: 1rem;
+}
+
+.boxSubtitle {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.linkContacts {
+  font-size: 16px;
+  letter-spacing: normal;
+}

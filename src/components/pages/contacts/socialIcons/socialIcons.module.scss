@@ -1,0 +1,39 @@
+@use "./src/styles/variables" as *;
+@use "./src/styles/mixins" as *;
+@use "./src/styles/functions" as *;
+
+
+.container {
+  margin: 0 auto;
+  @include flex_col;
+  align-items: center;
+  gap: 2rem;
+}
+
+.title {
+  font-size: fluid-size(20, 32);
+  letter-spacing: 1px;
+
+  span {
+    color: $color_purple;
+  }
+}
+
+.containerSotials {
+  display: flex;
+  gap: 2rem;
+
+  a {
+    padding: 1rem;
+    border-radius: 50%;
+    background-color: $color_purple_25;
+
+    &:hover {
+      background-color: $color_purple;
+    }
+  }
+
+  @media (max-width: 480px) {
+    gap: 1rem;
+  }
+}

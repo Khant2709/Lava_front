@@ -30,7 +30,7 @@ export const WrapperPhone: React.FC<PhoneProps> = ({phoneNumber, telegramNumber,
         <a href={`tel:${phoneNumber}`}>
             {formatPhoneNumberWithMask(phoneNumber)}
         </a>
-        <a href={`https://api.whatsapp.com/send?phone=${phoneNumber}`} style={{display: 'flex'}}>
+        <a href={`https://api.whatsapp.com/send?phone=7${phoneNumber}`} style={{display: 'flex'}}>
             <FaWhatsapp size={26} color='#00ce1b'/>
         </a>
         <a href={`https://t.me/${telegramNumber}`} style={{display: 'flex'}}>

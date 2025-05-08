@@ -1,21 +1,24 @@
 import React from 'react';
-import Image, {StaticImageData} from "next/image";
+import Image from "next/image";
+import Markdown from 'react-markdown'
 
 
 import styles from './containerDescription.module.scss';
 
 interface DescriptionProps {
-    logo: StaticImageData;
+    logo: string;
     description: string;
 }
 
-const ContainerDescription:React.FC<DescriptionProps> = ({logo, description}) => {
+const ContainerDescription: React.FC<DescriptionProps> = ({logo, description}) => {
     return (
         <section className={styles.containerMain}>
             <div className={styles.wrapperLogo}>
-                <Image src={logo} alt={'logo'} className={styles.logo}/>
+                <Image src={logo} alt={'logo'} className={styles.logo} width={300} height={300}/>
             </div>
-            <p className={styles.description}>{description}</p>
+            <div className={styles.description}>
+                <Markdown>{description}</Markdown>
+            </div>
         </section>
     );
 };

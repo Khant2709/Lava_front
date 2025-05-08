@@ -4,7 +4,7 @@ import React, {useState} from 'react';
 import Image from "next/image";
 import {FaTimes, FaCalendarAlt, FaPhone} from "react-icons/fa";
 
-import {useBookingModalStore} from "../../../stores/bookingModalStore";
+import {useBookingModalStore} from "@stores/bookingModalStore";
 
 import FormBookingModal from "@components/forms/formBookingModal/formBookingModal";
 import FormCallModal from "@components/forms/formCallModal/formCallModal";

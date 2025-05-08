@@ -1,12 +1,13 @@
 @use "./src/styles/variables" as *;
 @use "./src/styles/functions" as *;
+@use "./src/styles/mixins" as *;
 
 .containerMain {
   display: grid;
   grid-template-columns: 1fr 2fr;
   gap: 2rem;
 
-  @media (max-width: 768px) {
+  @media (max-width: 900px) {
     grid-template-columns: 1fr;
   }
 }
@@ -30,6 +31,22 @@
 }
 
 .description {
-  font-size: fluid-size(14, 24);
-  text-indent: 32px;
+  @include flex_col;
+  gap: 8px;
+
+  h2 {
+    font-size: fluid-size(20, 28);
+    color: $color_purple;
+  }
+
+  h3 {
+    font-size: fluid-size(16, 22);
+    color: $color_text_grey;
+    margin-top: 8px;
+  }
+
+  blockquote {
+    font-style: italic;
+    color: $color_purple_50;
+  }
 }

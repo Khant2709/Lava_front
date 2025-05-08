@@ -1,9 +1,18 @@
-import React from 'react';
-import WrapperArticles from "@components/pages/articles/wrapperArticles";
-import {singleRequest} from "@utils/axios/request";
-import {articlesAPI} from "@api/api";
-import {checkApiResponses} from "@utils/checkStatusResponse";
+import React, {Suspense} from 'react';
+
+import Preloader from "@components/layout/preloader/preloader";
 import PageError from "@components/ui/error/pageError/pageError";
+import SEOContentArticlesPage from "@components/pagesSEO/articles";
+import WrapperArticles from "@components/pages/articles/wrapperArticles";
+
+import {articlesAPI} from "@api/api";
+import {singleRequest} from "@utils/axios/request";
+import {checkApiResponses} from "@utils/checkStatusResponse";
+
+import {jsonLd_articles, meta_articles_page} from "../../metadata/article";
+
+
+export const metadata = meta_articles_page;
 
 async function fetchData() {
     return await singleRequest(() => articlesAPI.getArticles())
@@ -14,8 +23,21 @@ export default async function ArticlesPage() {
 
     if (!checkApiResponses([articlesData]) || !articlesData?.data) return <PageError page={'articles'}/>
 
+    const jsonLd = jsonLd_articles(articlesData.data);
+
     return (
-        <WrapperArticles articles={articlesData.data}/>
+        <>
+            <script
+                type="application/ld+json"
+                dangerouslySetInnerHTML={{__html: JSON.stringify(jsonLd)}}
+            />
+            <SEOContentArticlesPage articles={articlesData.data}/>
+
+            <Suspense fallback={<Preloader/>}>
+                <WrapperArticles articles={articlesData.data}/>
+            </Suspense>
+        </>
     );
 };
 
+export const revalidate = 3600;

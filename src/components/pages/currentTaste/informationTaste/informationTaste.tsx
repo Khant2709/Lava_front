@@ -11,14 +11,27 @@ interface Props {
     brand: string;
     name: string;
     name_ru: string;
-    type: 'Микс' | 'Моно';
+    type: string;
     strength: number;
     smokiness: number;
     temp: number;
-    category: string[]
+    category: string[];
+    image: string;
+    size: number;
 }
 
-const InformationTaste: React.FC<Props> = ({brand, name, name_ru, type, strength, smokiness, temp, category}) => {
+const InformationTaste: React.FC<Props> = ({
+                                               brand,
+                                               name,
+                                               name_ru,
+                                               type,
+                                               strength,
+                                               smokiness,
+                                               temp,
+                                               category,
+                                               image,
+                                               size
+                                           }) => {
     return (
         <section className={styles.containerMain}>
             <article className={styles.card}>
@@ -50,7 +63,8 @@ const InformationTaste: React.FC<Props> = ({brand, name, name_ru, type, strength
                     </div>
                 </div>
             </article>
-            <Image src={test} alt={'image taste'} className={styles.image}/>
+            <Image src={image || test} alt={'image taste'} className={styles.image}
+                   width={size} height={size}/>
         </section>
     );
 };

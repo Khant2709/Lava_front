@@ -12,29 +12,21 @@ import 'swiper/css';
 import 'swiper/css/effect-creative';
 import styles from './roomInformation.module.scss';
 
-type RoomId = 1 | 2 | 3 | 4 | 5 | 6 | 7;
+import g1 from "@assets/gallary/g1.webp";
+import g2 from "@assets/gallary/g2.webp";
+import g3 from "@assets/gallary/g3.webp";
+import {roomID, RoomModel} from "@myTypes/api/roomsAPI";
+
+
+const testPhoto = [g1, g2, g3, g1, g2, g3]
 
 interface RoomProps {
-    roomData: {
-        id: RoomId;
-        name: string;
-        max_people: number;
-        description: string;
-        comfort: string[];
-        conditions: string[];
-        images: StaticImageData[];
-    } | undefined;
-    openModal: (placeId: RoomId) => void;
+    roomData: RoomModel | undefined;
+    openModal: (placeId: roomID) => void;
 }
 
-interface InformationProps {
-    id: RoomId;
-    name: string;
-    max_people: number;
-    description: string;
-    comfort: string[];
-    conditions: string[];
-    openModal: (placeId: RoomId) => void;
+interface InformationProps extends RoomModel{
+    openModal: (placeId: roomID) => void;
 }
 
 const RoomInformation: React.FC<RoomProps> = ({roomData, openModal}) => {
@@ -42,7 +34,7 @@ const RoomInformation: React.FC<RoomProps> = ({roomData, openModal}) => {
 
     return (
         <section className={styles.mainContainer}>
-            <RoomImages images={roomData.images}/>
+            <RoomImages images={testPhoto}/>
             <RoomDescription openModal={openModal} {...roomData}/>
         </section>
     );
@@ -71,30 +63,29 @@ const RoomImages = ({images}: { images: StaticImageData[] }) => (
             return <SwiperSlide className={styles.slide} key={`image_${i}`}>
                 <div className={styles.image} style={{backgroundImage: `url(${image.src})`}}/>
             </SwiperSlide>
-
         })}
     </Swiper>
 );
 
 const RoomDescription: React.FC<InformationProps> = ({
                                                          id,
-                                                         name,
-                                                         max_people,
-                                                         comfort,
+                                                         title,
+                                                         max_persons,
+                                                         amenities,
                                                          description,
-                                                         conditions,
+                                                         rules,
                                                          openModal
                                                      }) => (
     <article className={styles.containerInfo}>
-        <h3 className={styles.title}>{name}</h3>
+        <h3 className={styles.title}>{title}</h3>
         <div className={styles.boxInfo}>
             <p className={styles.label}>Мак. чел.:</p>
-            <p className={styles.text}>до {max_people} человек</p>
+            <p className={styles.text}>до {max_persons} человек</p>
         </div>
         <div className={styles.boxInfo}>
             <p className={styles.label}>Удобства:</p>
             <div className={styles.comfortBox}>
-                {comfort.map((el, i) => {
+                {amenities.map((el, i) => {
                     return <p className={styles.comfortItem} key={`comfort_${i}`}>{el}</p>
                 })}
             </div>
@@ -106,7 +97,7 @@ const RoomDescription: React.FC<InformationProps> = ({
         <div className={styles.boxInfo}>
             <p className={styles.label}>Условия:</p>
             <ul className={styles.conditionsBox}>
-                {conditions.map((el, i) => {
+                {rules.map((el, i) => {
                     return <li key={`condition_${i}`}>{el}</li>
                 })}
             </ul>

@@ -1,4 +1,4 @@
-import React from "react"
+import React, {Suspense} from "react"
 
 import WrapperHomePage from "@components/pages/home/wrapperHomePage";
 import PageError from "@components/ui/error/pageError/pageError";
@@ -8,6 +8,12 @@ import {generalDataAPI, menuAPI} from "@api/api"
 import {batchRequest} from "@utils/axios/request";
 import {checkApiResponses} from "@utils/checkStatusResponse";
 
+import {jsonLD_home, meta_home_page} from "../metadata/home";
+import SEOContentHomePage from "@components/pagesSEO/home";
+import Preloader from "@components/layout/preloader/preloader";
+
+
+export const metadata = meta_home_page;
 
 const createRatingData = (name: string, rating: number, reviewsCount: number, link: string) => ({
     name, rating, reviewsCount, link
@@ -61,13 +67,28 @@ export default async function Home() {
 
     return (
         <>
-            <WrapperHomePage
+            <script
+                type="application/ld+json"
+                dangerouslySetInnerHTML={{__html: JSON.stringify(jsonLD_home)}}
+            />
+
+            <SEOContentHomePage
                 promotions={promotionsData.data}
                 advantages={advantagesData.data}
                 menu={menuData.data}
                 mapsRating={mapsRating}
                 contacts={contacts}
             />
+
+            <Suspense fallback={<Preloader/>}>
+                <WrapperHomePage
+                    promotions={promotionsData.data}
+                    advantages={advantagesData.data}
+                    menu={menuData.data}
+                    mapsRating={mapsRating}
+                    contacts={contacts}
+                />
+            </Suspense>
         </>
     );
 }

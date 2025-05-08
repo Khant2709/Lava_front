@@ -8,33 +8,40 @@ import SelectedButton from "@components/ui/buttons/selectedButton/selectedButton
 
 import RoomInformation from "./roomInformation/roomInformation";
 
-import {roomsData} from "@components/pages/gallery_room/devData";
-
 import styles from './wrapperGalleryRooms.module.scss'
-import {useBookingModalStore} from "../../../stores/bookingModalStore";
+import {useBookingModalStore} from "@stores/bookingModalStore";
+import {roomID, RoomModel} from "@myTypes/api/roomsAPI";
+import {useClearSessionError} from "@hooks/useClearSessionError";
+import {usePreloaderStop} from "@hooks/usePreloaderStop";
 
-const WrapperGalleryRooms: React.FC = () => {
+interface Props {
+    rooms: RoomModel[]
+}
+
+const WrapperGalleryRooms: React.FC<Props> = ({rooms}) => {
+    usePreloaderStop();
+    useClearSessionError('rooms');
     const {openModal} = useBookingModalStore();
-    const [activeRoom, setActiveRoom] = useState<1 | 2 | 3 | 4 | 5 | 6 | 7>(1)
+    const [activeRoom, setActiveRoom] = useState<roomID>(1)
 
-    const toggleRoom = (id: 1 | 2 | 3 | 4 | 5 | 6 | 7) => {
+    const toggleRoom = (id: roomID) => {
         if (activeRoom !== id) {
             setActiveRoom(id)
         }
     }
 
     const currentRoom = useMemo(() => {
-        return roomsData.find(room => room.id === activeRoom)
-    }, [activeRoom])
+        return rooms.find(room => room.id === activeRoom)
+    }, [activeRoom, rooms])
 
     return (
         <SectionWrapper needMarginTop={true}>
             <Title Tag={'h1'} text={'Наши комнаты'}/>
             <section className={styles.sectionContainer}>
-                {roomsData.map(room => {
+                {rooms.map((room) => {
                     return <SelectedButton
-                        key={room.name}
-                        text={room.name}
+                        key={room.title}
+                        text={room.title}
                         isActive={room.id === activeRoom}
                         handleClick={() => toggleRoom(room.id)}
                     />

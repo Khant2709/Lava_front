@@ -1,9 +1,18 @@
-import React from 'react';
+import React, {Suspense} from 'react';
+
 import WrapperContactsPage from "@components/pages/contacts/wrapperContactsPage";
-import {singleRequest} from "@utils/axios/request";
-import {generalDataAPI} from "@api/api";
-import {checkApiResponses} from "@utils/checkStatusResponse";
+import Preloader from "@components/layout/preloader/preloader";
 import PageError from "@components/ui/error/pageError/pageError";
+
+import {generalDataAPI} from "@api/api";
+import {singleRequest} from "@utils/axios/request";
+import {checkApiResponses} from "@utils/checkStatusResponse";
+
+import {jsonLD_contact, meta_contacts_page} from "../../metadata/contacts";
+import SEOContentContactsPage from "@components/pagesSEO/contacts";
+
+
+export const metadata = meta_contacts_page;
 
 async function fetchData() {
     return await singleRequest(() => generalDataAPI.getGeneralData());
@@ -20,7 +29,17 @@ export default async function ContactsPage() {
     const socialData = {phone, telegram, instagram, vk};
 
     return (
-        <WrapperContactsPage contactsData={contactsData} socialData={socialData}/>
+        <>
+            <script
+                type="application/ld+json"
+                dangerouslySetInnerHTML={{__html: JSON.stringify(jsonLD_contact)}}
+            />
+            <SEOContentContactsPage data={generalData.data}/>
+
+            <Suspense fallback={<Preloader/>}>
+                <WrapperContactsPage contactsData={contactsData} socialData={socialData}/>
+            </Suspense>
+        </>
     );
 };
 

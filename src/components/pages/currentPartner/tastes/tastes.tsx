@@ -1,37 +1,36 @@
 import React from 'react';
 
 import styles from './tastes.module.scss';
-import Image, {StaticImageData} from "next/image";
+import Image from "next/image";
 import SelectedButton from "@components/ui/buttons/selectedButton/selectedButton";
-
-interface Taste {
-    id: number;
-    name: string;
-    nameRu: string;
-    description: string;
-    image: StaticImageData;
-    category: string[];
-}
+import {getFullPathImage} from "@utils/getFullPath";
+import {CategoryTobaccoModel} from "@myTypes/api/categoriesTobaccoAPI";
+import {TasteModel} from "@myTypes/api/tastesAPI";
+import SecondaryButton from "@components/ui/buttons/secondaryButton/secondaryButton";
 
 interface TastesProps {
-    allCategory: string[];
-    tastes: Taste[];
-    toggleCategory: (category: string) => void;
+    allCategory: CategoryTobaccoModel[];
+    tastes: TasteModel[];
+    toggleCategory: (categoryId: number) => void;
     clearCategory: () => void;
-    activeCategories: string[];
+    activeCategories: number[];
     openTaste: (name: string) => void;
+    nextPage: () => void;
+    hasMorePage: boolean;
+    nameCategories: { [key: number]: string };
 }
 
 interface CategoryProps {
-    allCategory: string[];
-    toggleCategory: (category: string) => void;
+    allCategory: CategoryTobaccoModel[];
+    toggleCategory: (categoryId: number) => void;
     clearCategory: () => void;
-    activeCategories: string[];
+    activeCategories: number[];
 }
 
 interface ContainerTastesProps {
-    tastes: Taste[];
+    tastes: TasteModel[];
     openTaste: (name: string) => void;
+    nameCategories: { [key: number]: string };
 }
 
 const Tastes: React.FC<TastesProps> = ({
@@ -40,7 +39,10 @@ const Tastes: React.FC<TastesProps> = ({
                                            toggleCategory,
                                            clearCategory,
                                            activeCategories,
-                                           openTaste
+                                           openTaste,
+                                           nextPage,
+                                           hasMorePage,
+                                           nameCategories
                                        }) => {
     return (
         <section className={styles.containerMain}>
@@ -50,7 +52,8 @@ const Tastes: React.FC<TastesProps> = ({
                 clearCategory={clearCategory}
                 activeCategories={activeCategories}
             />
-            <ContainerTastes tastes={tastes} openTaste={openTaste}/>
+            <ContainerTastes tastes={tastes} openTaste={openTaste} nameCategories={nameCategories}/>
+            {hasMorePage && <SecondaryButton text={'Показать еще'} handleClick={nextPage}/>}
         </section>
     );
 };
@@ -61,7 +64,7 @@ const ContainerCategory: React.FC<CategoryProps> = ({
                                                         allCategory,
                                                         toggleCategory,
                                                         activeCategories,
-                                                        clearCategory
+                                                        clearCategory,
                                                     }) => (
     <div className={styles.containerCategories}>
         <button
@@ -70,36 +73,46 @@ const ContainerCategory: React.FC<CategoryProps> = ({
         >
             все
         </button>
-        {allCategory.map((category, i) => {
-            const isActive = activeCategories.includes(category)
+        {allCategory.map((category) => {
+            const isActive = activeCategories.includes(category.id)
             return <SelectedButton
-                key={i}
-                text={category}
+                key={category.id}
+                text={category.name_ru}
                 isActive={isActive}
-                handleClick={() => toggleCategory(category)}
+                handleClick={() => toggleCategory(category.id)}
             />
         })}
     </div>
 );
 
-const ContainerTastes: React.FC<ContainerTastesProps> = ({tastes, openTaste}) => (
+const ContainerTastes: React.FC<ContainerTastesProps> = ({tastes, openTaste, nameCategories}) => (
     <div className={styles.containerTastes}>
         {tastes.map(taste => {
             return <article key={taste.id} className={styles.cardTaste} onClick={() => openTaste(taste.name)}>
+                {taste?.category &&
                 <div className={styles.categoriesBox}>
-                    {taste.category.map((category, i) => {
-                        return <div key={`${taste.id}_${i}`} className={styles.category}>
-                            {category}
+                    {taste.category.map((categoryId) => {
+
+                        return <div key={`${nameCategories[categoryId]}`} className={styles.category}>
+                            {nameCategories[categoryId]}
                         </div>
                     })}
                 </div>
-                <Image src={taste.image} alt={taste.name} className={styles.imageTaste}/>
-                <div className={styles.infoTaste}>
-                    <p className={styles.nameTaste}>{taste.name}</p>
-                    <p className={styles.nameRuTaste}>{taste.nameRu}</p>
-                    <p className={styles.descriptionTaste}>{taste.description}</p>
-                    <button className={styles.buttonCard} onClick={() => openTaste(taste.name)}>подробнее...</button>
+                }
+                <div className={styles.wrapperContent}>
+                    <Image src={getFullPathImage('m', taste.image_path, taste.image_name_m)}
+                           alt={taste.name}
+                           className={styles.imageTaste}
+                           width={304}
+                           height={304}
+                    />
+                    <div className={styles.infoTaste}>
+                        <p className={styles.nameTaste}>{taste.name}</p>
+                        <p className={styles.nameRuTaste}>{taste.name_ru}</p>
+                        <p className={styles.descriptionTaste}>{taste.description_company}</p>
+                    </div>
                 </div>
+                <button className={styles.buttonCard} onClick={() => openTaste(taste.name)}>подробнее...</button>
             </article>
         })}
     </div>

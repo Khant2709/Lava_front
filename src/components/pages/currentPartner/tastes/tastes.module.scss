@@ -57,13 +57,20 @@
 
 .cardTaste {
   position: relative;
+  cursor: pointer;
 
   padding: 1rem;
   border-radius: $border_r;
   background-color: $color_bg_secondary;
 
-  display: grid;
-  grid-template-columns: 1fr;
+  @include flex_col;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 1rem;
+}
+
+.wrapperContent {
+  @include flex_col;
   gap: 1rem;
 }
 
@@ -94,6 +101,12 @@
 .descriptionTaste {
   color: $color_text_grey;
   margin: 8px 0;
+
+  display: -webkit-box;
+  -webkit-line-clamp: 6;       // количество строк
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .buttonCard {
@@ -119,6 +132,7 @@
   text-align: right;
 
   @include flex_col;
+  align-items: flex-end;
   gap: 8px;
 }
 

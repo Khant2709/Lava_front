@@ -12,15 +12,20 @@ import Title from "@components/ui/title/title";
 import {useWindowWidth} from "@hooks/UseWidth";
 
 import {devGalleryCategory} from "./devData";
+import {usePreloaderStop} from "@hooks/usePreloaderStop";
+import {useClearSessionError} from "@hooks/useClearSessionError";
 
 
 const WrapperGallery: React.FC = () => {
     const router = useRouter();
     const width = useWindowWidth();
+    usePreloaderStop();
+    useClearSessionError('gallery');
 
 
     const openGallery = (link: string) => {
-        router.push(`/gallery/${link}`)
+        const fullLink = link === 'rooms' ? `/${link}` : `/gallery/${link}`;
+        router.push(fullLink);
     }
 
     if (!width) return null;

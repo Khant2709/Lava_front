@@ -7,80 +7,101 @@ import Title from "@components/ui/title/title";
 import ContainerDescription from "./containerDescription/containerDescription";
 import Tastes from "./tastes/tastes";
 
-import {allCategory} from "@components/pages/currentPartner/devData";
-import {StaticImageData} from "next/image";
 import {useRouter} from "next/navigation";
 import {transformNameToUrl} from "@utils/nameUrlTransform";
+import {usePreloaderStop} from "@hooks/usePreloaderStop";
+import {getFullPathImage} from "@utils/getFullPath";
+import {CurrentPartnerModel} from "@myTypes/api/partnersAPI";
+import {useClearSessionError} from "@hooks/useClearSessionError";
+import {CategoryTobaccoModel} from "@myTypes/api/categoriesTobaccoAPI";
 
-
-interface Taste {
-    id: number;
-    name: string;
-    nameRu: string;
-    description: string;
-    image: StaticImageData;
-    category: string[];
-}
 
 interface PartnerProps {
-    partnerData: {
-        id: number;
-        name: string;
-        name_ru: string;
-        description: string;
-        img: StaticImageData;
-        tastes: Taste[];
-    } | undefined;
+    currentPartner: CurrentPartnerModel,
+    categoriesTobacco: CategoryTobaccoModel[]
 }
 
-const WrapperCurrentPartner: React.FC<PartnerProps> = ({partnerData}) => {
-    const router = useRouter();
-    const [activeCategories, setActiveCategories] = useState<string[]>([]);
+const WrapperCurrentPartner: React.FC<PartnerProps> = ({currentPartner, categoriesTobacco}) => {
+    useClearSessionError('partner');
+    usePreloaderStop();
 
-    const toggleCategory = (category: string) => {
-        const isActiveCategory = activeCategories.includes(category);
+    const router = useRouter();
+    const [activeCategories, setActiveCategories] = useState<number[]>([]);
+    const [page, setPage] = useState<number>(1);
+
+    const tastes = useMemo(() => {
+        if (!currentPartner || !currentPartner.tastes?.length) return [];
+        if (!activeCategories.length) return currentPartner.tastes;
+
+        return currentPartner.tastes.filter((taste) => {
+            if (!taste?.category) return false;
+
+            return taste.category.some((categoryId) => activeCategories.includes(categoryId));
+        })
+    }, [activeCategories, currentPartner]);
+
+    const hasMorePage = useMemo(() => {
+        return tastes?.length > 20 * page;
+    }, [tastes, page])
+
+    // Наименование категорий по id для отображения в карточке
+    const nameCategories = useMemo(() => {
+        return categoriesTobacco.reduce<Record<number, string>>((acc, value) => {
+            acc[value.id] = value.name_ru;
+            return acc;
+        }, {});
+    }, [categoriesTobacco]);
+
+
+    // При скроле отображать следующие 20 вкусов
+    const nextPage = () => {
+        if (hasMorePage) {
+            setPage((prevPage) => prevPage + 1);
+        }
+    }
+
+    const toggleCategory = (categoryId: number) => {
+        const isActiveCategory = activeCategories.includes(categoryId);
 
         if (isActiveCategory) {
-            const filteredCategory = activeCategories.filter(el => el !== category);
+            const filteredCategory = activeCategories.filter(el => el !== categoryId);
             setActiveCategories(filteredCategory)
         } else {
-            setActiveCategories([...activeCategories, category])
+            setActiveCategories([...activeCategories, categoryId])
         }
     };
 
     const clearCategory = () => {
-        setActiveCategories([])
+        setActiveCategories([]);
+        setPage(1);
     }
 
-    const tastes = useMemo(() => {
-        if (!partnerData) return [];
-        if (!activeCategories.length) return partnerData.tastes;
-
-        return partnerData.tastes.filter(taste => {
-            return taste.category.some(category => activeCategories.includes(category));
-        })
-    }, [activeCategories, partnerData]);
-
     const openTaste = (name: string) => {
-        if (partnerData) {
-            router.push(`/partners/${partnerData.name}/${transformNameToUrl(name)}`)
+        if (currentPartner) {
+            router.push(`/partners/${transformNameToUrl(currentPartner.name)}/${transformNameToUrl(name)}`)
         }
     }
 
-    if (!partnerData) return null;
+    if (!currentPartner) return null;
 
     return (
         <SectionWrapper needMarginTop={true}>
-            <Title Tag={'h1'} text={`${partnerData.name} (${partnerData.name_ru})`}/>
-            <ContainerDescription logo={partnerData.img} description={partnerData.description}/>
+            <Title Tag={'h1'} text={currentPartner.name_ru}/>
+            <ContainerDescription
+                logo={getFullPathImage('m', currentPartner.image_path, currentPartner.logo_image_m)}
+                description={currentPartner.description}
+            />
             <Title Tag={'h2'} text={'Вкусы'}/>
             <Tastes
-                allCategory={allCategory}
-                tastes={tastes}
+                allCategory={categoriesTobacco}
+                tastes={tastes.slice(0, 20 * page)}
                 toggleCategory={toggleCategory}
                 clearCategory={clearCategory}
                 activeCategories={activeCategories}
                 openTaste={openTaste}
+                nextPage={nextPage}
+                hasMorePage={hasMorePage}
+                nameCategories={nameCategories}
             />
         </SectionWrapper>
     );

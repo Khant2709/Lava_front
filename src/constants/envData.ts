@@ -3,6 +3,7 @@ export const MODE: string = process.env.NEXT_PUBLIC_MODE!;
 export const EMAIL_COMPANY: string = process.env.NEXT_PUBLIC_EMAIL!;
 export const PHONE_COMPANY: string = process.env.NEXT_PUBLIC_PHONE!;
 export const TG_COMPANY: string = process.env.NEXT_PUBLIC_TG!;
+export const TIME_WORK_COMPANY: string = 'Пн. - Вс. с 12:00 - 04:00';
 
 export const ADDRESS_COMPANY: string = process.env.NEXT_PUBLIC_ADDRESS!;
 export const YA_LINK_COMPANY: string = process.env.NEXT_PUBLIC_YA_LINK!;
@@ -31,6 +32,3 @@ export const TIME_CASH = {
         API: 5 * 60 * 1000,
     }
 };
-
-export const FOLDER_D = 'desktop';
-export const FOLDER_M = 'mobile';

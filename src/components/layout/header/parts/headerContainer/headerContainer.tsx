@@ -27,7 +27,7 @@ const HeaderContainer: React.FC<HeaderProps> = ({width, handleNavigation, curren
             <div className={styles.containerHeader}>
                 <Image alt="logo" src={logo} className={styles.logo} onClick={() => handleNavigation('/')}/>
 
-                {width > 768
+                {width > 900
                     ? <NavigationDesktop handleNavigation={handleNavigation} currentPath={currentPath}/>
                     :
                     <Image alt="burger" src={burger} className={styles.burger} onClick={() => setShowNavbar(true)}/>

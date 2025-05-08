@@ -9,6 +9,7 @@ import FormButton from "@components/ui/buttons/formButton/formButton";
 import {bookingModalSchema, BookingModalFormData} from "@validators/fieldsBookingModal";
 
 import styles from "./formBookingModal.module.scss";
+import {roomID} from "@myTypes/api/roomsAPI";
 
 const countGuestDEV = [
     {value: 1, text: '1-2 человека'},
@@ -44,7 +45,7 @@ const defaultTime = () => {
 }
 
 interface Props {
-    placeId: 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7;
+    placeId: roomID;
 }
 
 const FormBookingModal: React.FC<Props> = ({placeId}) => {

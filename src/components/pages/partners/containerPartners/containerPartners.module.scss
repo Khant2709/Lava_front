@@ -52,7 +52,7 @@
 }
 
 .boxInformation {
-  min-height: 210px;
+  min-height: 230px;
   letter-spacing: 1px;
   padding: 1rem;
   background: $gradient_card;
@@ -75,6 +75,12 @@
   font-size: fluid-size(14, 16);
   color: $color_text_grey_light;
   text-indent: 12px;
+
+  display: -webkit-box;
+  -webkit-line-clamp: 8; /* Количество строк */
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
 
   @media (max-width: 480px) {
     letter-spacing: normal;

@@ -33,7 +33,7 @@
   }
 
   // Генерация классов .span1 - .span8
-  @for $i from 1 through 8 {
+  @for $i from 0 through 7 {
     .span#{$i} {
       transform: rotateY(calc(#{$i} * 45deg)) translateZ(350px);
     }

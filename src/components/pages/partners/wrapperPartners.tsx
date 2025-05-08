@@ -8,7 +8,6 @@ import Title from "@components/ui/title/title";
 import Carousel from "@components/pages/partners/carousel/carousel";
 import ContainerPartners from "@components/pages/partners/containerPartners/containerPartners";
 
-import {logoPartners, textPartners} from "./devData";
 import {useClearSessionError} from "@hooks/useClearSessionError";
 import {usePreloaderStop} from "@hooks/usePreloaderStop";
 import {PartnersModel} from "@myTypes/api/partnersAPI";
@@ -27,12 +26,12 @@ const WrapperPartners: React.FC<Props> = ({partners}) => {
         const checkName = splitName.length > 1 ? splitName.join('_') : name;
         route.push(`/partners/${checkName}`)
     }
-    console.log(partners.length)
+
     return (
         <SectionWrapper needMarginTop={true}>
-            <Carousel partners={partners}/>
+            <Carousel partners={partners.slice(0, 8)}/>
             <Title Tag={'h1'} text={'Наши партнеры'}/>
-            <ContainerPartners text={textPartners} partners={logoPartners} openPartner={openPartner}/>
+            <ContainerPartners partners={partners} openPartner={openPartner}/>
         </SectionWrapper>
     );
 };

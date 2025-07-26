@@ -10,7 +10,11 @@ import {CallModalFormData, callModalSchema} from "@validators/fieldsBookingModal
 
 import styles from './formCallModal.module.scss';
 
-const FormCallModal: React.FC = () => {
+interface Props {
+    sendOrder: (data: CallModalFormData) => void;
+}
+
+const FormCallModal: React.FC<Props> = ({sendOrder}) => {
     const {
         register,
         handleSubmit,
@@ -22,12 +26,12 @@ const FormCallModal: React.FC = () => {
         defaultValues: {
             name: '',
             phone: '',
-            consent: false,
+            consent: true,
         },
     });
 
     const onSubmit = (data: CallModalFormData) => {
-        console.log('Данные отправлены:', data);
+        sendOrder(data)
     };
 
     return (

@@ -24,9 +24,12 @@
   gap: 2rem;
 
   a {
-    padding: 1rem;
+    width: 3.5rem;
+    height: 3.5rem;
     border-radius: 50%;
     background-color: $color_purple_25;
+
+    @include flex_center;
 
     &:hover {
       background-color: $color_purple;

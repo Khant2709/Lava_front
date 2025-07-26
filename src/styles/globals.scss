@@ -48,3 +48,9 @@ a {
   color: inherit;
   text-decoration: none;
 }
+
+@media (max-width: 500px) {
+  .custom-toast {
+    max-width: 90vw;
+  }
+}

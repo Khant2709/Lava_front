@@ -11,12 +11,15 @@ import Title from "@components/ui/title/title";
 
 import {useWindowWidth} from "@hooks/UseWidth";
 
-import {devGalleryCategory} from "./devData";
 import {usePreloaderStop} from "@hooks/usePreloaderStop";
 import {useClearSessionError} from "@hooks/useClearSessionError";
+import {GalleryModel} from "@myTypes/api/galleryAPI";
 
+interface Props {
+    gallery: GalleryModel[]
+}
 
-const WrapperGallery: React.FC = () => {
+const WrapperGallery: React.FC<Props> = ({gallery}) => {
     const router = useRouter();
     const width = useWindowWidth();
     usePreloaderStop();
@@ -34,8 +37,8 @@ const WrapperGallery: React.FC = () => {
         <SectionWrapper needMarginTop={true}>
             <Title Tag={'h1'} text={'Галерея'}/>
             {width > 600
-                ? <DesktopVersion galleryItems={devGalleryCategory} openGallery={openGallery}/>
-                : <MobileVersion galleryItems={devGalleryCategory} openGallery={openGallery}/>
+                ? <DesktopVersion galleryItems={gallery} openGallery={openGallery}/>
+                : <MobileVersion galleryItems={gallery} openGallery={openGallery}/>
             }
         </SectionWrapper>
     );

@@ -1,20 +1,15 @@
 import React from 'react';
-import {StaticImageData} from "next/image";
+
+import {GalleryModel} from "@myTypes/api/galleryAPI";
+import {getFullPathImage} from "@utils/getFullPath";
 
 import styles from "./mobileVersion.module.scss";
 
-interface GalleryItem {
-    id: number;
-    img: StaticImageData;
-    text: string;
-    link: string;
-}
 
 interface Props {
-    galleryItems: GalleryItem[];
+    galleryItems: GalleryModel[];
     openGallery: (link: string) => void;
 }
-
 
 const MobileVersion: React.FC<Props> = ({galleryItems, openGallery}) => {
     return (
@@ -22,11 +17,11 @@ const MobileVersion: React.FC<Props> = ({galleryItems, openGallery}) => {
             {galleryItems.map(el => (
                 <div
                     key={el.id} className={styles.card}
-                    style={{backgroundImage: `url(${el.img.src})`}}
-                    onClick={() => openGallery(el.link)}
+                    style={{backgroundImage: `url(${getFullPathImage('m', el.image_path, el.image_preview_name_m)})`}}
+                    onClick={() => openGallery(el.slug)}
                 >
                     <div className={styles.card__head}>
-                        <p>{el.text}</p>
+                        <p>{el.title}</p>
                     </div>
                 </div>
             ))}

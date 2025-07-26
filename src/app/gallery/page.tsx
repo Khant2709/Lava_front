@@ -3,10 +3,25 @@ import WrapperGallery from "@components/pages/gallery/wrapperGallery";
 import Preloader from "@components/layout/preloader/preloader";
 import {jsonLD_gallery, meta_gallery_page} from "../../metadata/gallery";
 import SEOContentGalleryPage from "@components/pagesSEO/gallery";
+import {singleRequest} from "@utils/axios/request";
+import PageError from "@components/ui/error/pageError/pageError";
+import {checkApiResponses} from "@utils/checkStatusResponse";
+import {galleryAPI} from "@api/api";
+
 
 export const metadata = meta_gallery_page;
 
-const GalleryPage: React.FC = () => {
+async function fetchData() {
+    return await singleRequest(() => galleryAPI.getGallery())
+}
+
+const GalleryPage: React.FC = async () => {
+    const gallery = await fetchData();
+
+    if (!checkApiResponses([gallery]) || !gallery?.data) {
+        return <PageError page={'gallery'}/>
+    }
+
     return (
         <>
             <script
@@ -15,7 +30,7 @@ const GalleryPage: React.FC = () => {
             />
             <SEOContentGalleryPage/>
             <Suspense fallback={<Preloader/>}>
-                <WrapperGallery/>
+                <WrapperGallery gallery={gallery.data}/>
             </Suspense>
         </>
     );

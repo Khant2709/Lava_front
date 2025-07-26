@@ -33,6 +33,12 @@ export interface MetaContact {
     contactType: "customer support";
 }
 
+export interface MetaAggregateRating {
+    "@type": "AggregateRating";
+    ratingValue: string;
+    reviewCount: string;
+}
+
 export interface MetaReview {
     "@type": "Review",
     reviewRating: {
@@ -84,7 +90,7 @@ export interface MetaPage {
         title: string,
         description: string,
         url: string,
-        images: MetaImage[],
+        images?: MetaImage[] | [],
         locale: "ru_RU",
         type: "website",
     },

@@ -1,7 +1,15 @@
 import {createMetaDataPage} from "./createMetaDataPage";
 import {createJsonBreadcrumb} from "./createJsonBreadcrumb";
 
-import {META_ADDRESS, META_CONTACT, META_DATA, META_GEO, META_REVIEW, META_SAME_AS} from "./constants";
+import {
+    META_ADDRESS,
+    META_AGGREGATE_RATING,
+    META_CONTACT,
+    META_DATA,
+    META_GEO,
+    META_REVIEW,
+    META_SAME_AS
+} from "./constants";
 
 import {JsonLDHomePage} from "@myTypes/meta/home";
 import {JsonLDBreadcrumbs, MetaPage} from "@myTypes/meta/constants";
@@ -53,6 +61,7 @@ export const jsonLD_home: (JsonLDHomePage | JsonLDBreadcrumbs)[] = [
         priceRange: '1000-3000 RUB',
         openingHours: META_DATA.timeToWork,
         contactPoint: META_CONTACT,
+        aggregateRating: META_AGGREGATE_RATING,
         review: META_REVIEW,
         sameAs: META_SAME_AS
     },

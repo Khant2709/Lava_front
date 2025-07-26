@@ -9,6 +9,7 @@ import {bookingSchema, BookingFormData} from '@validators/bookingValidator';
 
 import styles from '../stylesForm.module.scss';
 import FormButton from "@components/ui/buttons/formButton/formButton";
+import {BookingModalFormData} from "@validators/fieldsBookingModal";
 
 const now = new Date();
 const defaultDate = `${now.getFullYear()}-${String(now.getMonth() + 1).padStart(2, '0')}-${String(now.getDate()).padStart(2, '0')}`;
@@ -22,7 +23,12 @@ const defaultTime = () => {
     return `${String(hour + 1).padStart(2, '0')}:00`
 }
 
-const FormBooking: React.FC = () => {
+interface Props {
+    isDisableBtn: boolean;
+    bookingOrder: (data: BookingModalFormData) => void;
+}
+
+const FormBooking: React.FC<Props> = ({isDisableBtn, bookingOrder}) => {
     const {
         register,
         handleSubmit,
@@ -30,6 +36,7 @@ const FormBooking: React.FC = () => {
         formState: {errors},
         watch,
         trigger,
+        reset,
     } = useForm<BookingFormData>({
         resolver: yupResolver(bookingSchema) as Resolver<BookingFormData>,
         mode: 'onChange',
@@ -52,6 +59,8 @@ const FormBooking: React.FC = () => {
 
     const onSubmit = (data: BookingFormData) => {
         console.log('Данные отправлены:', data);
+        bookingOrder(data);
+        reset();
     };
 
     return (
@@ -100,7 +109,7 @@ const FormBooking: React.FC = () => {
                 </label>
                 {errors.consent && <span className={styles.error}>{errors.consent.message}</span>}
             </div>
-            <FormButton text={'Забронировать'}/>
+            <FormButton text={'Забронировать'} disable={isDisableBtn}/>
         </form>
     );
 }

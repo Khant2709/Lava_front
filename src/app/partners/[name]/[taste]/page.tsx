@@ -22,7 +22,9 @@ interface Props {
 export async function generateMetadata({params}: Props) {
     const resolvedParams = await params;
     const taste = await singleRequest(() => tastesAPI.getTaste(resolvedParams.name, resolvedParams.taste));
-    return meta_taste_page(taste.data);
+    if (checkApiResponses([taste]) && taste.data) {
+        return meta_taste_page(taste.data);
+    }
 }
 
 async function fetchData(namePartner: string, nameTaste: string) {

@@ -53,20 +53,6 @@ export const consentCheckbox = yup
     .oneOf([true], 'Необходимо согласие на обработку данных')
     .required();
 
-/** Выподающие списки */
-const validGuestValues = [1, 2, 3, 4, 5, 6];
-const validRoomValues = [0, 1, 2, 3, 4, 5, 6, 7];
-
-export const countGuestField = yup
-    .number()
-    .required('Пожалуйста, выберите количество гостей')
-    .oneOf(validGuestValues, 'Некорректное количество гостей');
-
-export const roomField = yup
-    .number()
-    .required('Пожалуйста, выберите комнату')
-    .oneOf(validRoomValues, 'Некорректная комната');
-
 /** Валидация для полей даты и времени */
 
 const getTodayDate = () => {

@@ -1,0 +1,9 @@
+# *
+User-agent: *
+Allow: /
+
+# Host
+Host: https://lavalounge.ru
+
+# Sitemaps
+Sitemap: https://lavalounge.ru/sitemap.xml

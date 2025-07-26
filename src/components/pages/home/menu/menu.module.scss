@@ -2,7 +2,7 @@
 @use "./src/styles/functions" as *;
 @use "./src/styles/mixins" as *;
 
-$height_slide: 20rem;
+$height_slide: 18rem;
 
 .swiper {
   width: 100%;
@@ -27,13 +27,13 @@ $height_slide: 20rem;
 
   border-radius: $border_r;
   border-left: 3px solid $color_blue;
-  background-color: rgba(0, 0, 0, 0.35);
+  background-color: rgba(0, 0, 0, 0.5);
 
   padding: 2rem 1rem;
 
   @include flex_col;
   justify-content: flex-end;
-  gap: 1.5rem;
+  gap: 1rem;
 }
 
 .title {

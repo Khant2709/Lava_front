@@ -1,17 +1,29 @@
 import React, {Suspense} from 'react';
 
-import GalleryPhotos from "@components/pages/gallery_photos/galleryPhotos";
+import PageError from "@components/ui/error/pageError/pageError";
 import Preloader from "@components/layout/preloader/preloader";
+import GalleryPhotos from "@components/pages/gallery_photos/galleryPhotos";
 import {SEOContentAtmosphereGallery} from "@components/pagesSEO/galleryPhoto";
 
-import {photosTest} from "@components/pages/gallery_photos/devData";
-
+import {galleryAPI} from "@api/api";
+import {singleRequest} from "@utils/axios/request";
 import {jsonLd_gallery_atmosphere, meta_gallery_atmosphere_page} from "../../../metadata/galleryAtmosphere";
+import {checkApiResponses} from "@utils/checkStatusResponse";
 
 
 export const metadata = meta_gallery_atmosphere_page;
 
-const GalleryAtmospherePage: React.FC = () => {
+async function fetchData() {
+    return await singleRequest(() => galleryAPI.getImagesCategory('atmosphere'))
+}
+
+const GalleryAtmospherePage: React.FC = async () => {
+    const images = await fetchData();
+
+    if (!checkApiResponses([images]) || !images?.data) {
+        return <PageError page={'gallery_next'}/>
+    }
+
     return (
         <>
             <script
@@ -21,7 +33,7 @@ const GalleryAtmospherePage: React.FC = () => {
             <SEOContentAtmosphereGallery/>
 
             <Suspense fallback={<Preloader/>}>
-                <GalleryPhotos title={'Атмосфера'} photos={photosTest}/>
+                <GalleryPhotos title={'Атмосфера'} photos={images.data}/>
             </Suspense>
         </>
     );

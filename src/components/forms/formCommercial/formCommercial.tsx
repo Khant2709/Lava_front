@@ -10,12 +10,19 @@ import {CommercialFormData, commercialFormSchema} from "@validators/fieldsCommer
 import styles from "@components/forms/stylesForm.module.scss";
 import FormButton from "@components/ui/buttons/formButton/formButton";
 
-const FormCommercial: React.FC = () => {
+
+interface Props {
+    sendOrder: (data: CommercialFormData) => void;
+    isDisableBtn: boolean;
+}
+
+const FormCommercial: React.FC<Props> = ({sendOrder, isDisableBtn}) => {
     const {
         register,
         handleSubmit,
         control,
         formState: {errors},
+        reset
     } = useForm<CommercialFormData>({
         resolver: yupResolver(commercialFormSchema) as Resolver<CommercialFormData>,
         mode: 'onChange',
@@ -25,12 +32,13 @@ const FormCommercial: React.FC = () => {
             phone: '',
             email: '',
             offer: '',
-            consent: false,
+            consent: true,
         },
     });
 
     const onSubmit = (data: CommercialFormData) => {
-        console.log('Данные отправлены:', data);
+        sendOrder(data);
+        reset()
     };
 
 
@@ -85,7 +93,7 @@ const FormCommercial: React.FC = () => {
                 </label>
                 {errors.consent && <span className={styles.error}>{errors.consent.message}</span>}
             </div>
-            <FormButton text={'Отправить'}/>
+            <FormButton text={'Отправить'} disable={isDisableBtn}/>
         </form>
     );
 };

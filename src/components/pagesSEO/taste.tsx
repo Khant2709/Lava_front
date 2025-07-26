@@ -1,4 +1,6 @@
 import React from 'react';
+import Image from "next/image";
+
 import styles from "./style.module.scss";
 import {TasteFullModel} from "@myTypes/api/tastesAPI";
 import {getFullPathImage} from "@utils/getFullPath";
@@ -12,7 +14,8 @@ const SEOContentTastePage: React.FC<Props> = ({taste}) => {
     return (
         <div className={styles.srr_only}>
             <h1>Вкус {taste.name} ({taste.name_ru}) от бренда {taste.companyName}</h1>
-            <img
+            <Image
+                width={450} height={450}
                 src={getFullPathImage('d', taste.image_path, taste.image_name_d)}
                 alt={`Изображение вкуса ${taste.name_ru} (${taste.name}) от ${taste.companyName}`}
                 style={{display: 'none'}}

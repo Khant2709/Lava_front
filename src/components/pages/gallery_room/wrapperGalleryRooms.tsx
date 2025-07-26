@@ -22,7 +22,7 @@ const WrapperGalleryRooms: React.FC<Props> = ({rooms}) => {
     usePreloaderStop();
     useClearSessionError('rooms');
     const {openModal} = useBookingModalStore();
-    const [activeRoom, setActiveRoom] = useState<roomID>(1)
+    const [activeRoom, setActiveRoom] = useState<roomID>(1);
 
     const toggleRoom = (id: roomID) => {
         if (activeRoom !== id) {

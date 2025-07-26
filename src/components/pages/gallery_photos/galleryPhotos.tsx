@@ -2,20 +2,24 @@
 
 import React from 'react';
 import Masonry, {ResponsiveMasonry} from "react-responsive-masonry";
-import Image, {StaticImageData} from "next/image";
+import Image from "next/image";
 
 import SectionWrapper from "@components/layout/sectionWrapper/sectionWrapper";
 import Title from "@components/ui/title/title";
 
-
-import styles from './galleryPhotos.module.scss';
 import {useWindowWidth} from "@hooks/UseWidth";
 import {usePreloaderStop} from "@hooks/usePreloaderStop";
 import {useClearSessionError} from "@hooks/useClearSessionError";
 
+import {getFullPathImage} from "@utils/getFullPath";
+import {GalleryItemModel} from "@myTypes/api/galleryAPI";
+
+import styles from './galleryPhotos.module.scss';
+
+
 interface Props {
     title: string;
-    photos: StaticImageData[];
+    photos: GalleryItemModel[];
 }
 
 const GalleryPhotos: React.FC<Props> = ({title, photos}) => {
@@ -30,8 +34,13 @@ const GalleryPhotos: React.FC<Props> = ({title, photos}) => {
             <Title Tag={'h1'} text={title}/>
             <ResponsiveMasonry columnsCountBreakPoints={{300: 1, 480: 2, 768: 3}}>
                 <Masonry>
-                    {photos.map((photo, i) => {
-                        return <Image key={`photo_${i}`} src={photo} alt={`photo_${i}`} className={styles.image}/>
+                    {photos.map((photo) => {
+                        return <Image key={`photo_${photo.id}`}
+                                      src={getFullPathImage('m', photo.image_path, photo.image_name_m)}
+                                      width={480}
+                                      height={427}
+                                      alt={`photo_${photo.id}`}
+                                      className={styles.image}/>
                     })}
                 </Masonry>
             </ResponsiveMasonry>

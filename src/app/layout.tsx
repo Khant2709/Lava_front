@@ -1,4 +1,5 @@
 import React from "react";
+import {ToastContainer} from "react-toastify";
 
 import Header from "@components/layout/header/header";
 import WrapperPreloader from "@components/layout/preloader/wrapperPreloader";
@@ -31,6 +32,7 @@ export default function RootLayout({children}: Readonly<{ children: React.ReactN
         </head>
         <body>
         <WindowWidthProvider>
+            <ToastContainer toastClassName="custom-toast"/>
             <WrapperPreloader/>
             <DevelopmentModal/>
             <AgeWarningModal/>

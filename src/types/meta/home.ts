@@ -1,4 +1,4 @@
-import {MetaAddress, MetaContact, MetaGeo, MetaReview} from "@myTypes/meta/constants";
+import {MetaAddress, MetaAggregateRating, MetaContact, MetaGeo, MetaReview} from "@myTypes/meta/constants";
 
 export interface JsonLDHomePage {
     "@context": "https://schema.org",
@@ -14,6 +14,7 @@ export interface JsonLDHomePage {
     priceRange: string;
     openingHours: string;
     contactPoint: MetaContact;
+    aggregateRating: MetaAggregateRating;
     review: MetaReview[];
     sameAs: string[];
 }

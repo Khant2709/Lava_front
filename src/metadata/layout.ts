@@ -16,9 +16,10 @@ export const metaData_layout: MetaLayout = {
     },
     icons: {                                                                                                            // Набор иконок для браузеров, Apple устройств, Android и т.п.
         icon: [
+            {url: `${META_DATA.url}/favicon.ico`, type: "image/x-icon"},
+            {url: `${META_DATA.url}/favicon.svg`, type: "image/svg+xml"}, // 👈 для Яндекса
             {url: `${META_DATA.url}/favicon32.png`, type: "image/png", sizes: "32x32"},
             {url: `${META_DATA.url}/favicon120.png`, type: "image/png", sizes: "120x120"},
-            {url: `${META_DATA.url}/favicon.ico`, type: "image/x-icon"},
         ],
         shortcut: {
             url: `${META_DATA.url}/favicon192.png`,

@@ -20,7 +20,8 @@ const Carousel: React.FC<CarouselProps> = ({partners}) => {
                         <Image src={getFullPathImage('d', partner.image_path, partner.logo_image_d)}
                                width={300}
                                height={300}
-                               alt={partner.name_ru}/>
+                               alt={partner.name_ru}
+                        />
                     </div>
                 })
             }

@@ -1,8 +1,11 @@
 'use client'
 
-import React from 'react';
+import React, {useRef} from 'react';
 import {Swiper, SwiperSlide} from 'swiper/react';
 import {EffectCreative} from 'swiper/modules';
+import {Swiper as SwiperType} from 'swiper';
+
+import { FaAngleRight, FaAngleLeft } from "react-icons/fa";
 
 import {useWindowWidth} from "@hooks/UseWidth";
 
@@ -24,36 +27,51 @@ interface CardProps {
 
 interface MenuProps {
     menu: MenuFullModel[];
+    initialSlideIndex?: number;
 }
 
-const MenuSlider: React.FC<MenuProps> = ({menu}) => {
+const MenuSlider: React.FC<MenuProps> = ({menu, initialSlideIndex = 0}) => {
     const width = useWindowWidth();
+    const swiperRef = useRef<SwiperType | null>(null);
 
     if (!width) return null;
 
     return (
-        <Swiper
-            autoHeight={true}
-            grabCursor={true}
-            effect={'creative'}
-            creativeEffect={{
-                prev: {
-                    shadow: true,
-                    translate: [0, 0, -400],
-                },
-                next: {
-                    translate: ['100%', 0, 0],
-                },
-            }}
-            modules={[EffectCreative]}
-            className={styles.swiper}
-        >
-            {menu.map((el) => {
-                return <SwiperSlide key={el.id} className={styles.slide}>
-                    <CardMenu isDesktop={width > 768} title={el.title} products={el.products} note={el.note}/>
-                </SwiperSlide>
-            })}
-        </Swiper>
+        <div className={styles.wrapperSlider}>
+            <div className={styles.navigation}>
+                <button onClick={() => swiperRef.current?.slidePrev()} className={styles.buttonNav}>
+                    <FaAngleLeft className={styles.iconNav}/>
+                </button>
+                <button onClick={() => swiperRef.current?.slideNext()} className={styles.buttonNav}>
+                    <FaAngleRight className={styles.iconNav}/>
+                </button>
+            </div>
+
+            <Swiper
+                onSwiper={(swiper) => (swiperRef.current = swiper)}
+                initialSlide={initialSlideIndex}
+                autoHeight={true}
+                grabCursor={true}
+                effect={'creative'}
+                creativeEffect={{
+                    prev: {
+                        shadow: true,
+                        translate: [0, 0, -400],
+                    },
+                    next: {
+                        translate: ['100%', 0, 0],
+                    },
+                }}
+                modules={[EffectCreative]}
+                className={styles.swiper}
+            >
+                {menu.map((el) => {
+                    return <SwiperSlide key={el.id} className={styles.slide}>
+                        <CardMenu isDesktop={width > 768} title={el.title} products={el.products} note={el.note}/>
+                    </SwiperSlide>
+                })}
+            </Swiper>
+        </div>
     );
 };
 

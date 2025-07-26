@@ -6,6 +6,8 @@ import {PiSmileyMeltingFill, PiSmileyXEyesFill} from "react-icons/pi";
 import SectionWrapper from "@components/layout/sectionWrapper/sectionWrapper";
 import SecondaryButton from "@components/ui/buttons/secondaryButton/secondaryButton";
 
+import {usePreloaderStop} from "@hooks/usePreloaderStop";
+
 import {MAX_ATTEMPTS_RELOAD, SESSION_ERROR_KEY} from "@constants/envData";
 
 import styles from './pageError.module.scss';
@@ -21,6 +23,7 @@ interface ErrorContentProps {
 }
 
 const PageError: React.FC<Props> = ({page}) => {
+    usePreloaderStop();
     const [attempts, setAttempts] = useState<number>(0);
     const [isLoading, setIsLoading] = useState(true);
 

@@ -1,4 +1,5 @@
 import React from 'react';
+import Image from "next/image";
 import Markdown from "react-markdown";
 
 import {transformNameToUrl} from "@utils/nameUrlTransform";
@@ -21,9 +22,8 @@ const SEOContentPartnerPage: React.FC<Props> = ({partner}) => {
                 <div>
                     <Markdown>{partner.description}</Markdown>
                 </div>
-                <img alt={`логотип табака ${partner.name}`}
-                     loading={'lazy'}
-                     src={getFullPathImage('d', partner.image_path, partner.logo_image_d)}/>
+                <Image alt={`логотип табака ${partner.name}`} width={450} height={450}
+                       src={getFullPathImage('d', partner.image_path, partner.logo_image_d)}/>
             </section>
 
             <section>

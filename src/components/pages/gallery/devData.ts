@@ -1,6 +1,6 @@
 import g1 from '@assets/gallary/g1.webp';
-import g2 from '@assets/gallary/g2.webp';
-import g3 from '@assets/gallary/g3.webp';
+import g2 from '@assets/gallary/atmosphere_1.webp';
+import g3 from '@assets/gallary/guests_1.webp';
 
 export const devGalleryCategory = [
     {

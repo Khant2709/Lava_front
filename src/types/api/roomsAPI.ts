@@ -7,11 +7,13 @@ export interface RoomModel {
     description: string | null;
     amenities: string[] | [];
     rules: string[] | [];
-    images: {
-        id: number;
-        image_path: string;
-        image_name_d: string;
-        image_name_m: string;
-        priority: number
-    }[] | [];
+    images: ImageItem[] | [];
+}
+
+export interface ImageItem {
+    id: number;
+    image_path: string;
+    image_name_d: string;
+    image_name_m: string;
+    priority: number
 }

@@ -20,3 +20,9 @@ export interface TasteFullModel extends TasteModel {
     companyName: string;
     categories: string[];
 }
+
+export interface AllTastesModel {
+    id: number;
+    partner_name: string;
+    name: string;
+}

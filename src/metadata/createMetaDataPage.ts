@@ -22,7 +22,7 @@ export const createMetaDataPage = (
             width: 1200,
             height: 630,
             alt: imageAlt,
-            type: "image/webp"
+            type: "image/webp" as const
         });
     }
 
@@ -33,7 +33,7 @@ export const createMetaDataPage = (
             width: 800,
             height: 800,
             alt: imageAlt,
-            type: "image/webp"
+            type: "image/webp" as const
         });
     }
 
@@ -44,7 +44,7 @@ export const createMetaDataPage = (
             width: 1080,
             height: 1920,
             alt: imageAlt,
-            type: "image/webp"
+            type: "image/webp" as const
         });
     }
 

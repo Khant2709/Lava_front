@@ -1,6 +1,7 @@
 'use client'
 
-import React from 'react';
+import React, {useMemo} from 'react';
+import {useSearchParams} from "next/navigation";
 
 import SectionWrapper from "@components/layout/sectionWrapper/sectionWrapper";
 import Title from "@components/ui/title/title";
@@ -20,6 +21,9 @@ interface Props {
 const WrapperMenu: React.FC<Props> = ({menu}) => {
     useClearSessionError('menu');
     usePreloaderStop();
+    const params = useSearchParams();
+
+    const initialSlideIndex = useMemo(() => (params.get('id') ?? 0), [params])
 
     return (
         <SectionWrapper needMarginTop={true}>
@@ -30,7 +34,7 @@ const WrapperMenu: React.FC<Props> = ({menu}) => {
                 и лёгкие десерты. Здесь каждый найдёт то, что подойдёт именно под его вайб — будь то тёплая беседа,
                 расслабленный вечер или шумная компания. Выбирай, пробуй, наслаждайся — остальное мы уже подготовили.
             </p>
-            <MenuSlider menu={menu}/>
+            <MenuSlider menu={menu} initialSlideIndex={Number(initialSlideIndex)}/>
         </SectionWrapper>
     );
 };

@@ -2,6 +2,38 @@
 @use "./src/styles/functions" as *;
 @use "./src/styles/mixins" as *;
 
+.wrapperSlider {
+  width: 100%;
+
+  @include flex_col;
+  gap: 1rem;
+}
+
+.navigation {
+  display: flex;
+  align-self: flex-end;
+  gap: 1.5rem;
+}
+
+.buttonNav {
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 50%;
+  border: none;
+  background-color: $color_purple;
+  @include flex_center;
+
+  &:hover {
+    cursor: pointer;
+    background-color: $color_text_white;
+  }
+}
+
+.iconNav {
+  font-size: 1.5rem;
+  //color: white;
+}
+
 .swiper {
   width: 100%;
   border-radius: $border_r;

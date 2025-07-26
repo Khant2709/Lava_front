@@ -1,5 +1,12 @@
 import {EMAIL_COMPANY, PHONE_COMPANY, TG_COMPANY, TIME_WORK_COMPANY} from "@constants/envData";
-import {MetaAddress, MetaContact, MetaDataType, MetaGeo, MetaReview} from "@myTypes/meta/constants";
+import {
+    MetaAddress,
+    MetaAggregateRating,
+    MetaContact,
+    MetaDataType,
+    MetaGeo,
+    MetaReview
+} from "@myTypes/meta/constants";
 
 export const META_DATA: MetaDataType = {
     meName: 'Vladislav.Kh',
@@ -45,6 +52,12 @@ export const META_CONTACT: MetaContact = {
 export const META_SAME_AS: string[] = [
     `https://t.me/${TG_COMPANY}`,
 ]
+
+export const META_AGGREGATE_RATING: MetaAggregateRating = {
+    "@type": "AggregateRating",
+    "ratingValue": "4.7",
+    "reviewCount": "411"
+}
 
 export const META_REVIEW: MetaReview[] = [
     {

@@ -9,7 +9,7 @@ import {batchRequest} from "@utils/axios/request";
 import {checkApiResponses} from "@utils/checkStatusResponse";
 
 import {jsonLD_home, meta_home_page} from "../metadata/home";
-import SEOContentHomePage from "@components/pagesSEO/home";
+// import SEOContentHomePage from "@components/pagesSEO/home";
 import Preloader from "@components/layout/preloader/preloader";
 
 
@@ -72,13 +72,13 @@ export default async function Home() {
                 dangerouslySetInnerHTML={{__html: JSON.stringify(jsonLD_home)}}
             />
 
-            <SEOContentHomePage
-                promotions={promotionsData.data}
-                advantages={advantagesData.data}
-                menu={menuData.data}
-                mapsRating={mapsRating}
-                contacts={contacts}
-            />
+            {/*<SEOContentHomePage*/}
+            {/*    promotions={promotionsData.data}*/}
+            {/*    advantages={advantagesData.data}*/}
+            {/*    menu={menuData.data}*/}
+            {/*    mapsRating={mapsRating}*/}
+            {/*    contacts={contacts}*/}
+            {/*/>*/}
 
             <Suspense fallback={<Preloader/>}>
                 <WrapperHomePage

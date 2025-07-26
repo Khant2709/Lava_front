@@ -1,4 +1,5 @@
 import React from 'react';
+import Image from "next/image";
 
 import {transformNameToUrl} from "@utils/nameUrlTransform";
 import {getFullPathImage} from "@utils/getFullPath";
@@ -27,7 +28,8 @@ const SEOContentPartnersPage: React.FC<Props> = ({partners}) => {
                 {partners.map((partner) => {
                     return <article key={partner.id}>
                         <h3>{partner.name}</h3>
-                        <img alt={partner.name} src={getFullPathImage('m', partner.image_path, partner.logo_image_m)}/>
+                        <Image alt={partner.name} width={300} height={300}
+                               src={getFullPathImage('m', partner.image_path, partner.logo_image_m)}/>
                         <p>{partner.description}</p>
                         <a href={`/partners/${transformNameToUrl(partner.name)}`}>
                             Подробнее о бренде

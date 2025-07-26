@@ -27,7 +27,7 @@ interface MapProps {
 
 export const WrapperPhone: React.FC<PhoneProps> = ({phoneNumber, telegramNumber, customStyle}) => (
     <div className={`${styles.wrapperLink} ${customStyle ?? ''}`}>
-        <a href={`tel:${phoneNumber}`}>
+        <a href={`tel:7${phoneNumber}`}>
             {formatPhoneNumberWithMask(phoneNumber)}
         </a>
         <a href={`https://api.whatsapp.com/send?phone=7${phoneNumber}`} style={{display: 'flex'}}>

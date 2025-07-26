@@ -35,6 +35,7 @@ const BannerSlider: React.FC<BannerSliderProps> = ({slides}) => {
             className={styles.swiper}
             speed={600}
             parallax={true}
+            grabCursor={true}
             pagination={{
                 clickable: true,
             }}
@@ -48,7 +49,7 @@ const BannerSlider: React.FC<BannerSliderProps> = ({slides}) => {
                 data-swiper-parallax="-23%"
             />
             {slides.map((slide) => {
-                return <SwiperSlide key={slide.id} className={styles.swiperSlide}>
+                return <SwiperSlide key={slide.id}>
                     <SlideContent
                         {...slide}
                         openModal={() => openModal()}
@@ -62,7 +63,7 @@ const BannerSlider: React.FC<BannerSliderProps> = ({slides}) => {
 export default BannerSlider;
 
 const SlideContent: React.FC<SlideContentProps> = ({title, subtitle, description, openModal}) => (
-    <>
+    <article className={styles.swiperSlide}>
         <div className={styles.textContainer}>
             <p className={styles.title} data-swiper-parallax="-300">
                 {title}
@@ -75,5 +76,5 @@ const SlideContent: React.FC<SlideContentProps> = ({title, subtitle, description
             </p>
         </div>
         <MainButton text={'Забронировать'} disabled={false} handleClick={openModal}/>
-    </>
+    </article>
 );

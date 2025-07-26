@@ -18,7 +18,9 @@ interface Props {
 export async function generateMetadata({params}: Props) {
     const resolvedParams = await params;
     const partner = await singleRequest(() => partnersAPI.getCurrentPartner(resolvedParams.name));
-    return meta_partner_page(partner.data);
+    if (checkApiResponses([partner]) && partner.data) {
+        return meta_partner_page(partner.data);
+    }
 }
 
 async function fetchData(name: string) {

@@ -1,18 +1,15 @@
 import React from 'react';
+import Image from "next/image";
 
+
+import {GalleryModel} from "@myTypes/api/galleryAPI";
+import {getFullPathImage} from "@utils/getFullPath";
 
 import styles from './desktopVersion.module.scss';
-import Image, {StaticImageData} from "next/image";
 
-interface GalleryItem {
-    id: number;
-    img: StaticImageData;
-    text: string;
-    link: string;
-}
 
 interface Props {
-    galleryItems: GalleryItem[];
+    galleryItems: GalleryModel[];
     openGallery: (link: string) => void;
 }
 
@@ -20,10 +17,11 @@ const DesktopVersion: React.FC<Props> = ({galleryItems, openGallery}) => {
     return (
         <section className={styles.container}>
             {galleryItems.map(el => (
-                <div key={el.id} className={styles.card} onClick={() => openGallery(el.link)}>
-                    <Image alt={'img'} src={el.img}/>
+                <div key={el.id} className={styles.card} onClick={() => openGallery(el.slug)}>
+                    <Image alt={'img'} src={getFullPathImage('d', el.image_path, el.image_preview_name_d)} width={1280}
+                           height={854}/>
                     <div className={styles.card__head}>
-                        <p>{el.text}</p>
+                        <p>{el.title}</p>
                     </div>
                 </div>
             ))}

@@ -2,34 +2,14 @@ import React, {useEffect} from 'react';
 import {IMaskInput} from "react-imask";
 import {yupResolver} from "@hookform/resolvers/yup";
 import {Controller, Resolver, useForm} from "react-hook-form";
-import {FaUser, FaPhoneAlt, FaRegCalendarAlt, FaClock, FaUsers, FaCampground} from "react-icons/fa";
+import {FaUser, FaPhoneAlt, FaRegCalendarAlt, FaClock} from "react-icons/fa";
 
 import FormButton from "@components/ui/buttons/formButton/formButton";
 
 import {bookingModalSchema, BookingModalFormData} from "@validators/fieldsBookingModal";
 
 import styles from "./formBookingModal.module.scss";
-import {roomID} from "@myTypes/api/roomsAPI";
 
-const countGuestDEV = [
-    {value: 1, text: '1-2 человека'},
-    {value: 2, text: '3-4 человека'},
-    {value: 3, text: '5-6 человек'},
-    {value: 4, text: '7-8 человек'},
-    {value: 5, text: '9-10 человек'},
-    {value: 6, text: '10+ человек'},
-]
-
-const roomsDEV = [
-    {value: 0, text: 'Общий зал'},
-    {value: 1, text: 'VIP 1'},
-    {value: 2, text: 'VIP 2'},
-    {value: 3, text: 'VIP 3'},
-    {value: 4, text: 'VIP 4'},
-    {value: 5, text: 'VIP 5'},
-    {value: 6, text: 'VIP 6'},
-    {value: 7, text: 'VIP 7'},
-]
 
 const now = new Date();
 const defaultDate = `${now.getFullYear()}-${String(now.getMonth() + 1).padStart(2, '0')}-${String(now.getDate()).padStart(2, '0')}`;
@@ -45,10 +25,11 @@ const defaultTime = () => {
 }
 
 interface Props {
-    placeId: roomID;
+    sendBooking: (data: BookingModalFormData) => void;
+    isDisableBtn: boolean;
 }
 
-const FormBookingModal: React.FC<Props> = ({placeId}) => {
+const FormBookingModal: React.FC<Props> = ({sendBooking, isDisableBtn}) => {
     const {
         register,
         handleSubmit,
@@ -64,9 +45,7 @@ const FormBookingModal: React.FC<Props> = ({placeId}) => {
             phone: '',
             date: defaultDate,
             time: defaultTime(),
-            countGuest: 1,
-            room: placeId || 0,
-            consent: false,
+            consent: true,
         },
     });
 
@@ -79,7 +58,7 @@ const FormBookingModal: React.FC<Props> = ({placeId}) => {
     }, [selectedDate, trigger]);
 
     const onSubmit = (data: BookingModalFormData) => {
-        console.log('Данные отправлены:', data);
+        sendBooking(data)
     };
 
     return (
@@ -136,36 +115,6 @@ const FormBookingModal: React.FC<Props> = ({placeId}) => {
                     <input type="time" {...register('time')} />
                     {errors.time && <span className={styles.error}>{errors.time.message}</span>}
                 </div>
-
-                <div className={styles.field}>
-                    <label className={styles.labelTop}>
-                        <FaUsers/>
-                        Кол. гостей:
-                    </label>
-                    <select {...register('countGuest')}>
-                        {countGuestDEV.map((item) => (
-                            <option key={item.value} value={item.value}>
-                                {item.text}
-                            </option>
-                        ))}
-                    </select>
-                    {errors.countGuest && <span className={styles.error}>{errors.countGuest.message}</span>}
-                </div>
-
-                <div className={styles.field}>
-                    <label className={styles.labelTop}>
-                        <FaCampground/>
-                        Место:
-                    </label>
-                    <select {...register('room')}>
-                        {roomsDEV.map((item) => (
-                            <option key={item.value} value={item.value}>
-                                {item.text}
-                            </option>
-                        ))}
-                    </select>
-                    {errors.room && <span className={styles.error}>{errors.room.message}</span>}
-                </div>
             </div>
             <div className={styles.checkboxField}>
                 <label>
@@ -174,7 +123,7 @@ const FormBookingModal: React.FC<Props> = ({placeId}) => {
                 {errors.consent && <span className={styles.error}>{errors.consent.message}</span>}
             </div>
 
-            <FormButton text={'Забронировать'}/>
+            <FormButton text={'Забронировать'} disable={isDisableBtn}/>
         </form>
     );
 };

@@ -6,7 +6,8 @@
     "dev": "next dev --turbopack",
     "build": "next build",
     "start": "next start  -p 8001",
-    "lint": "next lint"
+    "lint": "next lint",
+    "postbuild": "next-sitemap"
   },
   "dependencies": {
     "@hookform/resolvers": "^5.0.1",
@@ -22,6 +23,7 @@
     "react-imask": "7.6.1",
     "react-markdown": "10.1.0",
     "react-responsive-masonry": "2.7.1",
+    "react-toastify": "11.0.5",
     "sass": "1.86.3",
     "sharp": "0.34.0",
     "swiper": "11.2.6",

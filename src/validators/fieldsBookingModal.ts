@@ -2,11 +2,9 @@ import * as yup from 'yup';
 
 import {
     consentCheckbox,
-    countGuestField,
     dateField,
     nameField,
     phoneField,
-    roomField,
     timeField
 } from "@validators/fields";
 
@@ -15,8 +13,6 @@ export const bookingModalSchema = yup.object({
     phone: phoneField,
     date: dateField,
     time: timeField,
-    countGuest: countGuestField,
-    room: roomField,
     consent: consentCheckbox,
 });
 
@@ -26,8 +22,6 @@ export interface BookingModalFormData {
     phone: string;
     date: string;
     time: string;
-    countGuest: number;
-    room: number;
     consent: boolean;
 }
 

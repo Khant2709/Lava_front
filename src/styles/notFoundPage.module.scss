@@ -1,0 +1,38 @@
+@use "./src/styles/variables" as *;
+@use "./src/styles/mixins" as *;
+@use "./src/styles/functions" as *;
+
+.containerMain {
+  width: 100%;
+  min-height: 50vh;
+
+  @include flex_center;
+}
+
+.container {
+  @include flex_col;
+  align-items: center;
+  gap: 2rem;
+}
+
+.containerTitle {
+  display: flex;
+  align-items: flex-end;
+}
+
+.icon {
+  font-size: fluid-size(32, 72);
+  color: $color_text_grey;
+}
+
+.title {
+  font-size: fluid-size(64, 96);
+  color: $color_purple;
+  letter-spacing: 2px;
+  margin-right: 1rem;
+}
+
+.text {
+  font-size: fluid-size(20, 32);
+  text-align: center;
+}

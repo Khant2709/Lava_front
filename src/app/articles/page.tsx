@@ -2,7 +2,6 @@ import React, {Suspense} from 'react';
 
 import Preloader from "@components/layout/preloader/preloader";
 import PageError from "@components/ui/error/pageError/pageError";
-import SEOContentArticlesPage from "@components/pagesSEO/articles";
 import WrapperArticles from "@components/pages/articles/wrapperArticles";
 
 import {articlesAPI} from "@api/api";
@@ -31,8 +30,6 @@ export default async function ArticlesPage() {
                 type="application/ld+json"
                 dangerouslySetInnerHTML={{__html: JSON.stringify(jsonLd)}}
             />
-            <SEOContentArticlesPage articles={articlesData.data}/>
-
             <Suspense fallback={<Preloader/>}>
                 <WrapperArticles articles={articlesData.data}/>
             </Suspense>

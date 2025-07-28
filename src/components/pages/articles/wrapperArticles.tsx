@@ -21,7 +21,7 @@ const WrapperArticles: React.FC<Props> = ({articles}) => {
 
     return (
         <SectionWrapper needMarginTop={true}>
-            <Title Tag={'h1'} text={'Кальянные статьи, советы и события'}/>
+            <Title Tag={'h1'} text={'Новости кальянной индустрии'}/>
             <ContentArticles articles={articles}/>
         </SectionWrapper>
     );

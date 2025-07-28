@@ -48,6 +48,23 @@ const BannerSlider: React.FC<BannerSliderProps> = ({slides}) => {
                 style={{'backgroundImage': `url(${bgImage.src})`}}
                 data-swiper-parallax="-23%"
             />
+            <SwiperSlide>
+                <article className={styles.swiperSlide}>
+                    <div className={styles.textContainer}>
+                        <h1 className={styles.title} data-swiper-parallax="-300">
+                            Кальянная Lava Lounge в Краснодаре
+                        </h1>
+                        <h2 className={styles.subtitle} data-swiper-parallax="-200">
+                            Уютная атмосфера, авторские кальяны и вип комнаты
+                        </h2>
+                        <p className={styles.text} data-swiper-parallax="-200">
+                            Добро пожаловать в Lava Lounge — лучшее место в Краснодаре для расслабления и отдыха. Бронируйте столик онлайн и наслаждайтесь комфортом, музыкой и вкусными кальянами.
+                        </p>
+                    </div>
+                    <MainButton text={'Забронировать'} disabled={false} handleClick={openModal}/>
+                </article>
+            </SwiperSlide>
+
             {slides.map((slide) => {
                 return <SwiperSlide key={slide.id}>
                     <SlideContent
@@ -65,12 +82,12 @@ export default BannerSlider;
 const SlideContent: React.FC<SlideContentProps> = ({title, subtitle, description, openModal}) => (
     <article className={styles.swiperSlide}>
         <div className={styles.textContainer}>
-            <p className={styles.title} data-swiper-parallax="-300">
+            <h2 className={styles.title} data-swiper-parallax="-300">
                 {title}
-            </p>
-            <p className={styles.subtitle} data-swiper-parallax="-200">
+            </h2>
+            <h3 className={styles.subtitle} data-swiper-parallax="-200">
                 {subtitle}
-            </p>
+            </h3>
             <p className={styles.text} data-swiper-parallax="-200">
                 {description}
             </p>

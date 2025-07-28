@@ -34,4 +34,8 @@
 
   @include flex_col;
   gap: 1rem;
+
+  a {
+    color: $color_purple;
+  }
 }

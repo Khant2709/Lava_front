@@ -20,6 +20,7 @@
 
 .cardArticle {
   width: 100%;
+  height: 100%;
   background-color: $color_bg_2;
   border: 2px solid $color_purple;
   border-radius: $border_r;
@@ -28,6 +29,13 @@
   @include flex_col;
   justify-content: space-between;
   gap: 1.5rem;
+
+  &:hover {
+    .link {
+      cursor: pointer;
+      color: $color_purple;
+    }
+  }
 }
 
 .wrapperBox {
@@ -87,8 +95,5 @@
 }
 
 .link {
-  &:hover {
-    cursor: pointer;
-    color: $color_purple;
-  }
+  transition: color 0.3s ease;
 }

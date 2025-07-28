@@ -21,7 +21,7 @@ interface AdvantagesProps {
 const Advantages: React.FC<AdvantagesProps> = ({advantages}) => {
     return (
         <SectionWrapper needMarginTop={true}>
-            <Title Tag={'h2'} text={'Для досуга'}/>
+            <Title Tag={'h2'} text={'Что вас ждёт в Lava Lounge'}/>
             <div className={styles.containerAdvantages}>
                 {advantages.map(advantage => {
                     return <CardAdvantage
@@ -41,7 +41,7 @@ export default Advantages;
 const CardAdvantage: React.FC<CardAdvantageProps> = ({title, subtitle, list}) => (
     <article className={styles.cardAdvantage}>
         <div className={styles.containerHeaderCard}>
-            <h3 className={styles.title}>{title}</h3>
+            <p className={styles.title}>{title}</p>
             <p className={styles.subtitle}>{subtitle}</p>
         </div>
         <ul className={styles.list}>

@@ -13,6 +13,15 @@
   @include flex_col;
   gap: 2rem;
 
+  a {
+    color: $color_purple;
+    text-decoration: underline;
+
+    &:hover {
+      text-decoration: none;
+    }
+  }
+
   @media (max-width: 768px) {
     line-height: normal;
     text-indent: 16px;

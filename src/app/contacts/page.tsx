@@ -9,7 +9,6 @@ import {singleRequest} from "@utils/axios/request";
 import {checkApiResponses} from "@utils/checkStatusResponse";
 
 import {jsonLD_contact, meta_contacts_page} from "../../metadata/contacts";
-import SEOContentContactsPage from "@components/pagesSEO/contacts";
 
 
 export const metadata = meta_contacts_page;
@@ -34,7 +33,6 @@ export default async function ContactsPage() {
                 type="application/ld+json"
                 dangerouslySetInnerHTML={{__html: JSON.stringify(jsonLD_contact)}}
             />
-            <SEOContentContactsPage data={generalData.data}/>
 
             <Suspense fallback={<Preloader/>}>
                 <WrapperContactsPage contactsData={contactsData} socialData={socialData}/>

@@ -39,6 +39,19 @@
   justify-content: center;
 }
 
+.containerText {
+  font-size: fluid-size(16, 22);
+  text-indent: 24px;
+  line-height: 28px;
+
+  @include flex_col;
+  gap: 12px;
+
+  a {
+    color: $color_purple;
+  }
+}
+
 .title {
   font-size: fluid-size(16, 22);
 }

@@ -5,7 +5,7 @@ import {Swiper, SwiperSlide} from 'swiper/react';
 import {EffectCreative} from 'swiper/modules';
 import {Swiper as SwiperType} from 'swiper';
 
-import { FaAngleRight, FaAngleLeft } from "react-icons/fa";
+import {FaAngleRight, FaAngleLeft} from "react-icons/fa";
 
 import {useWindowWidth} from "@hooks/UseWidth";
 
@@ -31,10 +31,8 @@ interface MenuProps {
 }
 
 const MenuSlider: React.FC<MenuProps> = ({menu, initialSlideIndex = 0}) => {
-    const width = useWindowWidth();
+    const width: number | undefined = useWindowWidth();
     const swiperRef = useRef<SwiperType | null>(null);
-
-    if (!width) return null;
 
     return (
         <div className={styles.wrapperSlider}>
@@ -67,7 +65,8 @@ const MenuSlider: React.FC<MenuProps> = ({menu, initialSlideIndex = 0}) => {
             >
                 {menu.map((el) => {
                     return <SwiperSlide key={el.id} className={styles.slide}>
-                        <CardMenu isDesktop={width > 768} title={el.title} products={el.products} note={el.note}/>
+                        <CardMenu isDesktop={!!width && width > 768} title={el.title} products={el.products}
+                                  note={el.note}/>
                     </SwiperSlide>
                 })}
             </Swiper>

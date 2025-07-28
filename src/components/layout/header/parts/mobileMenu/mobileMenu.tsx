@@ -1,5 +1,6 @@
 import React from 'react';
 import Image from "next/image";
+import Link from "next/link";
 
 import {WrapperMap, WrapperPhone} from "@components/ui/contacts/contacts";
 
@@ -14,10 +15,10 @@ interface MobileMenuProps {
     showNavbar: boolean;
     setShowNavbar: React.Dispatch<React.SetStateAction<boolean>>;
     currentPath: string;
-    handleNavigation: (link: string) => void;
+    closeNavbar: () => void;
 }
 
-const MobileMenu: React.FC<MobileMenuProps> = ({showNavbar, setShowNavbar, currentPath, handleNavigation}) => {
+const MobileMenu: React.FC<MobileMenuProps> = ({showNavbar, setShowNavbar, currentPath, closeNavbar}) => {
     return (
         <div className={`${styles.mobileMenu} ${showNavbar ? styles.open : ''}`}>
             <div className={styles.mobileMenuContent}>
@@ -32,11 +33,12 @@ const MobileMenu: React.FC<MobileMenuProps> = ({showNavbar, setShowNavbar, curre
                     {navbar.map((page) => {
                         const isActive = page.link === currentPath;
                         return (
-                            <p key={page.id}
-                               onClick={() => handleNavigation(page.link)}
-                               className={isActive ? styles.activeMobilePage : ''}>
+                            <Link key={page.id}
+                                  href={page.link}
+                                  onClick={closeNavbar}
+                                  className={isActive ? styles.activeMobilePage : ''}>
                                 {page.name}
-                            </p>
+                            </Link>
                         )
                     })}
                 </div>

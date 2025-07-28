@@ -1,5 +1,6 @@
 import React from 'react';
 import Image from "next/image";
+import Link from "next/link";
 
 import {navbar} from "@constants/navbar";
 
@@ -11,26 +12,26 @@ import styles from "./headerContainer.module.scss";
 
 interface HeaderProps {
     width: number;
-    handleNavigation: (link: string) => void;
     currentPath: string;
     setShowNavbar: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 interface NavigationProps {
-    handleNavigation: (link: string) => void;
     currentPath: string;
 }
 
-const HeaderContainer: React.FC<HeaderProps> = ({width, handleNavigation, currentPath, setShowNavbar}) => {
+const HeaderContainer: React.FC<HeaderProps> = ({width, currentPath, setShowNavbar}) => {
     return (
         <div className={styles.wrapperHeader}>
             <div className={styles.containerHeader}>
-                <Image alt="logo" src={logo} className={styles.logo} onClick={() => handleNavigation('/')}/>
-
-                {width > 900
-                    ? <NavigationDesktop handleNavigation={handleNavigation} currentPath={currentPath}/>
+                <Link href={'/'}>
+                    <Image alt={'Логотип кальянной Lava Lounge'} src={logo} className={styles.logo}/>
+                </Link>
+                {width && width > 900
+                    ? <NavigationDesktop currentPath={currentPath}/>
                     :
-                    <Image alt="burger" src={burger} className={styles.burger} onClick={() => setShowNavbar(true)}/>
+                    <Image alt={'Открыть меню'} src={burger} className={styles.burger}
+                           onClick={() => setShowNavbar(true)}/>
                 }
             </div>
         </div>
@@ -39,18 +40,17 @@ const HeaderContainer: React.FC<HeaderProps> = ({width, handleNavigation, curren
 
 export default HeaderContainer;
 
-const NavigationDesktop: React.FC<NavigationProps> = ({currentPath, handleNavigation}) => (
+const NavigationDesktop: React.FC<NavigationProps> = ({currentPath}) => (
     <div className={styles.containerNavigation}>
         {navbar.map((page) => {
             const isActive = page.link === currentPath;
             return (
-                <p
-                    key={page.id}
-                    onClick={() => handleNavigation(page.link)}
-                    className={isActive ? styles.activePage : styles.defaultPage}
+                <Link key={page.id}
+                      href={page.link}
+                      className={isActive ? styles.activePage : styles.defaultPage}
                 >
                     {page.name.toUpperCase()}
-                </p>
+                </Link>
             );
         })}
     </div>

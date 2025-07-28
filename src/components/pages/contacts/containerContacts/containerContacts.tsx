@@ -5,6 +5,7 @@ import {ADDRESS_COMPANY, PHONE_COMPANY, YA_LINK_COMPANY} from "@constants/envDat
 
 import styles from './containerContacts.module.scss';
 import {ContactsData} from "@components/pages/contacts/wrapperContactsPage";
+import Link from "next/link";
 
 
 interface CardProps {
@@ -43,10 +44,24 @@ const ContainerContacts: React.FC<ContactsData> = ({phone, address, address_link
 
     return (
         <>
-            <p className={styles.title}>
-                Мы всегда рады новым гостям и партнерам. Приходите к нам или свяжитесь удобным
-                способом.
-            </p>
+            <div className={styles.containerText}>
+                <p>
+                    Наша кальянная <Link href={'/'}>Lava Lounge</Link> находится в Краснодаре, в районе Панорама, по
+                    адресу: ул.Восточно-Кругликовская, 34. Мы работаем ежедневно с 12:00 до 04:00, чтобы вы могли
+                    отдохнуть в любое удобное время. Забронировать столик или уточнить детали вы можете по телефону
+                    +7 (953) 117-66-55.
+                </p>
+
+                <p>
+                    До нас легко добраться как на автомобиле, так и на общественном транспорте — рядом остановка и
+                    удобный выезд на ул. 40 лет Победы.
+                </p>
+
+                <p>
+                    Мы всегда рады гостям и с удовольствием подскажем, как добраться. Если вы ищете уютную кальянную в
+                    Краснодаре с вечерним графиком и удобным расположением — приходите в Lava Lounge!
+                </p>
+            </div>
             <section className={styles.containerMain}>
                 {devContactsData.map((el, i) => {
                     return <CardContact key={i} {...el}/>

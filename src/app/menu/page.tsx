@@ -8,7 +8,7 @@ import {checkApiResponses} from "@utils/checkStatusResponse";
 
 import {menuAPI} from "@api/api"
 import {jsonLD_menu, meta_menu_page} from "../../metadata/menu";
-import SEOContentMenuPage from "@components/pagesSEO/menu";
+// import SEOContentMenuPage from "@components/pagesSEO/menu";
 import {MenuItemModel} from "@myTypes/api/menuAPI";
 import Preloader from "@components/layout/preloader/preloader";
 
@@ -34,7 +34,7 @@ export default async function MenuPage() {
                 type="application/ld+json"
                 dangerouslySetInnerHTML={{__html: JSON.stringify(jsonLd)}}
             />
-            <SEOContentMenuPage menu={menuData.data}/>
+            {/*<SEOContentMenuPage menu={menuData.data}/>*/}
 
             <Suspense fallback={<Preloader/>}>
                 <WrapperMenu menu={menuData.data}/>

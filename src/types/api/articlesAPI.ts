@@ -1,5 +1,6 @@
 export interface ArticleModel {
     id: number;
+    slug: string;
     title: string;
     category: 'news' | 'tips' | 'events';
     short_description: string;

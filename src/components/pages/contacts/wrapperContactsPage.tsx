@@ -66,7 +66,7 @@ const WrapperContactsPage: React.FC<Props> = ({contactsData, socialData}) => {
 
     return (
         <SectionWrapper needMarginTop={true}>
-            <Title Tag={'h1'} text={'Наши контакты'}/>
+            <Title Tag={'h1'} text={'Контакты кальянной Lava Lounge'}/>
             <ContainerContacts {...contactsData}/>
             <MapWithText/>
             <FormCommercial sendOrder={sendOrder} isDisableBtn={isDisableBtn}/>

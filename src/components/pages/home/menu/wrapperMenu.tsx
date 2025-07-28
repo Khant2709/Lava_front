@@ -5,7 +5,6 @@ import React, {useMemo} from 'react';
 import MenuContent from "./menuContent";
 
 import {MenuModel} from "@myTypes/api/menuAPI";
-import {useRouter} from "next/navigation";
 import {useWindowWidth} from "@hooks/UseWidth";
 
 interface MenuProps {
@@ -13,7 +12,6 @@ interface MenuProps {
 }
 
 const WrapperMenu: React.FC<MenuProps> = ({menu}) => {
-    const router = useRouter();
     const width = useWindowWidth();
 
     const countSlide = useMemo<number>(() => {
@@ -23,12 +21,8 @@ const WrapperMenu: React.FC<MenuProps> = ({menu}) => {
         return 1.25;
     }, [width])
 
-    const openMenu = (id: number) => {
-        router.push(`/menu?id=${id - 1}`)
-    }
-
     return (
-        <MenuContent countSlide={countSlide} shortMenu={menu} openMenu={openMenu}/>
+        <MenuContent countSlide={countSlide} shortMenu={menu}/>
     )
 };
 

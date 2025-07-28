@@ -2,8 +2,6 @@
 
 import React from 'react';
 
-// import {useWindowWidth} from "@hooks/UseWidth";
-
 import BannerSlider from "@components/pages/home/bannerSlider/bannerSlider";
 import Advantages from "@components/pages/home/advantages/advantages";
 import WrapperMenu from "@components/pages/home/menu/wrapperMenu";
@@ -34,9 +32,6 @@ interface Props {
 const WrapperHomePage: React.FC<Props> = ({promotions, advantages, menu, mapsRating, contacts}) => {
     useClearSessionError('home');
     usePreloaderStop();
-    // const width = useWindowWidth();
-
-    // if (!width) return null;
 
     return (
         <>

@@ -1,4 +1,5 @@
 @use "./src/styles/functions" as *;
+<<<<<<< HEAD
 @use "./src/styles/variables" as *;
 
 .promoContainer {
@@ -81,12 +82,15 @@
     }
   }
 }
+=======
+>>>>>>> a3df344c0a5a9d92b8abd99c451d39f2408a71ce
 
 .text {
   width: 90%;
   margin: 0 auto;
   font-size: fluid-size(16, 24);
   letter-spacing: 1px;
+<<<<<<< HEAD
   line-height: 32px;
   text-align: center;
 
@@ -98,4 +102,7 @@
     width: 100%;
     line-height: 24px;
   }
+=======
+  text-align: center;
+>>>>>>> a3df344c0a5a9d92b8abd99c451d39f2408a71ce
 }

@@ -2,6 +2,10 @@ import React, {Suspense} from 'react';
 
 import PageError from "@components/ui/error/pageError/pageError";
 import Preloader from "@components/layout/preloader/preloader";
+<<<<<<< HEAD
+=======
+import {SEOContentGuestsGallery} from "@components/pagesSEO/galleryPhoto";
+>>>>>>> a3df344c0a5a9d92b8abd99c451d39f2408a71ce
 import GalleryPhotos from "@components/pages/gallery_photos/galleryPhotos";
 
 import {galleryAPI} from "@api/api";
@@ -29,8 +33,15 @@ const GalleryGuestPage: React.FC = async () => {
                 type="application/ld+json"
                 dangerouslySetInnerHTML={{__html: JSON.stringify(jsonLd_gallery_guests)}}
             />
+<<<<<<< HEAD
             <Suspense fallback={<Preloader/>}>
                 <GalleryPhotos title={'Фотографии гостей Lava Lounge'} photos={images.data}/>
+=======
+            <SEOContentGuestsGallery/>
+
+            <Suspense fallback={<Preloader/>}>
+                <GalleryPhotos title={'Наши гости'} photos={images.data}/>
+>>>>>>> a3df344c0a5a9d92b8abd99c451d39f2408a71ce
             </Suspense>
         </>
     );

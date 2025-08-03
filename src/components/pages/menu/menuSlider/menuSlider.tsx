@@ -11,7 +11,11 @@ import {useWindowWidth} from "@hooks/UseWidth";
 
 import {MenuFullModel, MenuItemModel} from "@myTypes/api/menuAPI";
 
+<<<<<<< HEAD
 import defaultBG from "@assets/bg_menu.webp"
+=======
+import defaultBG from "@assets/menu/t1.jpg"
+>>>>>>> a3df344c0a5a9d92b8abd99c451d39f2408a71ce
 
 import 'swiper/css';
 import 'swiper/css/effect-creative';

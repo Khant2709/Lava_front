@@ -20,6 +20,10 @@
     .card__head {
       min-width: 100%;
 
+<<<<<<< HEAD
+=======
+      font-size: fluid-size(16, 28);
+>>>>>>> a3df344c0a5a9d92b8abd99c451d39f2408a71ce
       text-align: center;
       white-space: nowrap;
       color: black;
@@ -34,11 +38,14 @@
       position: absolute;
       bottom: 0;
       left: 0;
+<<<<<<< HEAD
 
       h2 {
         font-weight: normal;
         font-size: fluid-size(16, 28);
       }
+=======
+>>>>>>> a3df344c0a5a9d92b8abd99c451d39f2408a71ce
     }
 
     &:hover {

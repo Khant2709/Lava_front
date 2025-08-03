@@ -39,7 +39,11 @@ const GalleryPhotos: React.FC<Props> = ({title, photos}) => {
                                       src={getFullPathImage('m', photo.image_path, photo.image_name_m)}
                                       width={480}
                                       height={427}
+<<<<<<< HEAD
                                       alt={`фотография ${title} №${photo.id}`}
+=======
+                                      alt={`photo_${photo.id}`}
+>>>>>>> a3df344c0a5a9d92b8abd99c451d39f2408a71ce
                                       className={styles.image}/>
                     })}
                 </Masonry>

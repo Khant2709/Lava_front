@@ -3,6 +3,10 @@ import React, {Suspense} from 'react';
 import PageError from "@components/ui/error/pageError/pageError";
 import Preloader from "@components/layout/preloader/preloader";
 import GalleryPhotos from "@components/pages/gallery_photos/galleryPhotos";
+<<<<<<< HEAD
+=======
+import {SEOContentAtmosphereGallery} from "@components/pagesSEO/galleryPhoto";
+>>>>>>> a3df344c0a5a9d92b8abd99c451d39f2408a71ce
 
 import {galleryAPI} from "@api/api";
 import {singleRequest} from "@utils/axios/request";
@@ -29,9 +33,16 @@ const GalleryAtmospherePage: React.FC = async () => {
                 type="application/ld+json"
                 dangerouslySetInnerHTML={{__html: JSON.stringify(jsonLd_gallery_atmosphere)}}
             />
+<<<<<<< HEAD
 
             <Suspense fallback={<Preloader/>}>
                 <GalleryPhotos title={'Атмосфера в кальянной Lava'} photos={images.data}/>
+=======
+            <SEOContentAtmosphereGallery/>
+
+            <Suspense fallback={<Preloader/>}>
+                <GalleryPhotos title={'Атмосфера'} photos={images.data}/>
+>>>>>>> a3df344c0a5a9d92b8abd99c451d39f2408a71ce
             </Suspense>
         </>
     );

@@ -1,0 +1,20 @@
+@use "./src/styles/variables" as *;
+@use "./src/styles/functions" as *;
+
+.btn {
+  font-size: fluid-size(14, 20);
+  color: $color_text_white;
+
+  padding: 0.75rem 1.5rem;
+  background-color: $color_bg_secondary;
+  border: 2px solid $color_purple;
+  border-radius: $border_r;
+
+  transition: all 0.3s ease;
+
+  &:hover {
+    cursor: pointer;
+    transform: scale(1.01);
+    box-shadow: 0 0 2px 2px $color_blue;
+  }
+}

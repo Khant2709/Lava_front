@@ -1,0 +1,143 @@
+@use "./src/styles/variables" as *;
+@use "./src/styles/mixins" as *;
+@use "./src/styles/mixinsForm" as *;
+
+.form {
+  width: 100%;
+
+  @include flex_col;
+  gap: 2rem;
+}
+
+.field {
+  @include flex_col;
+  gap: 12px;
+
+  select,
+  textarea,
+  input[type="text"],
+  input[type="tel"],
+  input[type="date"],
+  input[type="time"] {
+    @include form-element;
+  }
+
+  select {
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 140 140' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M10,45 L70,105 L130,45' stroke='white' stroke-width='15' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 16px center;
+    background-size: 16px;
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    padding-right: 40px; // чтобы стрелка не перекрывала текст
+    cursor: pointer;
+  }
+
+  select option {
+    background-color: $color_bg_2; // или основной фон твоей формы
+    color: $color_text_white;
+  }
+
+  textarea {
+    resize: vertical;
+    min-height: 10rem;
+    max-height: 20rem;
+  }
+
+  input[type="date"],
+  input[type="time"] {
+    &::-webkit-inner-spin-button,
+    &::-webkit-outer-spin-button,
+    &::-webkit-calendar-picker-indicator {
+      display: none;
+      -webkit-appearance: none;
+    }
+
+    &::-webkit-datetime-edit {
+      color: $color_text_white;
+    }
+
+    &::-webkit-datetime-edit-fields-wrapper {
+      background: transparent;
+    }
+
+    &:focus::-webkit-datetime-edit {
+      color: $color_text_white;
+    }
+  }
+
+  // iOS fix
+  &::-ms-expand {
+    display: none;
+  }
+
+  &:-moz-focusring {
+    color: transparent;
+    text-shadow: 0 0 0 $color_text_white;
+  }
+
+  &:focus {
+    outline: none;
+  }
+}
+
+.labelTop {
+  color: $color_text_grey;
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+
+  svg {
+    color: $color_purple;
+  }
+}
+
+.checkboxField {
+  display: flex;
+  @include flex_col;
+
+  label {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    font-size: 14px;
+    color: $color_text_white;
+
+    input[type="checkbox"] {
+      appearance: none;
+      width: 18px;
+      height: 18px;
+      border: 2px solid #007bff;
+      border-radius: 4px;
+      margin-right: 10px;
+      position: relative;
+      transition: background-color 0.2s ease;
+
+      &:checked {
+        background-color: #007bff;
+
+        &::after {
+          content: '\2713';
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%);
+          color: #fff;
+          font-size: 12px;
+        }
+      }
+    }
+  }
+
+  span {
+    margin-top: 8px;
+  }
+}
+
+.error {
+  margin: 0;
+  text-align: left;
+
+  @include form_error_field;
+}

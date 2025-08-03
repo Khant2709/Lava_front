@@ -1,0 +1,90 @@
+@use "./src/styles/variables" as *;
+@use "./src/styles/functions" as *;
+@use "./src/styles/mixins" as *;
+
+.containerDescription {
+  width: 100%;
+
+  font-size: fluid-size(16, 24);
+  line-height: 40px;
+  letter-spacing: 1px;
+  text-indent: 32px;
+
+  @include flex_col;
+  gap: 2rem;
+
+  a {
+    color: $color_purple;
+    text-decoration: underline;
+
+    &:hover {
+      text-decoration: none;
+    }
+  }
+
+  @media (max-width: 768px) {
+    line-height: normal;
+    text-indent: 16px;
+  }
+}
+
+.containerRatings {
+  width: 80%;
+
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 4rem;
+
+  @media (max-width: 1200px) {
+    width: 90%;
+    gap: 2rem;
+  }
+
+  @media (max-width: 768px) {
+    grid-template-columns: 1fr;
+
+  }
+}
+
+.cardRating {
+  background-color: $color_bg_main2;
+
+  padding: 2rem 1rem;
+
+  border-radius: $border_r;
+
+  @include flex_col;
+  align-items: center;
+  gap: 1rem;
+
+  transition: transform 0.3s ease;
+
+  &:hover {
+    transform: translateY(-5);
+    cursor: pointer;
+  }
+}
+
+.boxRating {
+  @include flex_col;
+  align-items: center;
+  gap: 8px;
+
+  p {
+    font-size: fluid-size(32, 40);
+    font-weight: 700;
+    letter-spacing: 2px;
+    color: $color_purple;
+  }
+}
+
+.nameMap {
+  font-size: fluid-size(18, 28);
+  text-align: center;
+}
+
+.reviews {
+  font-size: fluid-size(16, 20);
+  color: $color_text_grey;
+}

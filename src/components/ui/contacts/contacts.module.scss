@@ -1,0 +1,26 @@
+@use "./src/styles/variables" as *;
+
+.wrapperLink {
+  font-size: 18px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+
+}
+
+.wrapperLink a {
+  text-decoration: none;
+  letter-spacing: 2px;
+  font-weight: 400;
+}
+
+.wrapperLink img {
+  width: 1.75rem;
+  height: auto;
+  margin-left: 0.5rem;
+}
+
+.wrapperLink a:hover {
+  color: $color_purple;
+  text-decoration: underline;
+}

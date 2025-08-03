@@ -1,0 +1,20 @@
+  450*450 - desktop
+  304*304 - mobile
+    (
+        9,
+        'name',
+        'name_ru',
+        'mix/mono',
+        9,
+        9,
+        5,
+        'description_company',
+        'В процессе',
+        '/partners/bliss/',
+        '.webp',
+        '.webp',
+        0
+    ),
+
+INSERT INTO `tastes` (`partner_id`, `name`, `name_ru`, `type`, `strength`, `smokiness`, `temp`, `description_company`, `description_lava`, `image_path`, `image_name_d`, `image_name_m`, `is_new`)
+VALUES

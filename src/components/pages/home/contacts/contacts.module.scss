@@ -1,0 +1,59 @@
+@use "./src/styles/variables" as *;
+@use "./src/styles/functions" as *;
+@use "./src/styles/mixins" as *;
+
+
+.wrapperContacts {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+
+  @media (max-width: 768px) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.containerContactsData {
+  @include flex_col;
+  gap: 2rem;
+}
+
+.rowContacts {
+  @include flex_col;
+  gap: 1rem;
+
+  @media (max-width: 768px) {
+    gap: 8px;
+  }
+}
+
+.label {
+  font-size: fluid-size(14, 22);
+  color: $color_text_grey;
+}
+
+.text {
+  font-size: fluid-size(16, 24);
+}
+
+.customStyle, {
+  a {
+    @extend .text;
+  }
+}
+
+.map {
+  width: 100%;
+  height: 100%;
+
+  @include bg_params;
+  border-radius: $border_r;
+
+  @media (max-width: 768px) {
+    height: 25rem;
+  }
+
+  @media (max-width: 480px) {
+    height: 15rem;
+  }
+}

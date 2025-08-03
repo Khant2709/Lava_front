@@ -1,0 +1,39 @@
+@use "./src/styles/variables" as *;
+@use "./src/styles/functions" as *;
+@use "./src/styles/mixins" as *;
+
+.container {
+  width: 100%;
+  height: auto;
+
+  @include flex_col;
+  gap: 2rem;
+}
+
+.card {
+  width: 100%;
+  height: 20rem;
+
+  border-radius: $border_r;
+
+  @include bg_params;
+  display: flex;
+  align-items: flex-end;
+
+  @media (max-width: 480px) {
+    height: 15rem;
+  }
+}
+
+.card__head {
+  width: 100%;
+  letter-spacing: 1px;
+
+  padding: 1rem;
+  border-radius: 0 0 12px 12px;
+  background-color: $color_bg_secondary_85;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

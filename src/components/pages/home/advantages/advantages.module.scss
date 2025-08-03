@@ -1,0 +1,58 @@
+@use "./src/styles/variables" as *;
+@use "./src/styles/functions" as *;
+@use "./src/styles/mixins" as *;
+
+.containerAdvantages {
+  width: 100%;
+
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 2rem;
+
+  @media (max-width: 1200px) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @media (max-width: 600px) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.cardAdvantage {
+  width: 100%;
+  border-radius: $border_r;
+  background-color: $color_bg_main2;
+
+  padding: 1rem 1rem 2rem;
+
+  @include flex_col;
+  gap: 2rem;
+}
+
+.containerHeaderCard {
+  width: 100%;
+
+  @include flex_col;
+  align-items: center;
+  gap: 1rem;
+}
+
+.title {
+  font-size: fluid-size(40, 96);
+  font-weight: 700;
+  text-shadow: 0 0 32px $color_blue;
+}
+
+.subtitle {
+  font-size: fluid-size(20, 28);
+  text-align: center;
+}
+
+.list {
+  font-size: fluid-size(14, 18);
+  color: $color_text_grey_light;
+  margin-left: 1.5rem;
+
+  @include flex_col;
+  gap: 12px;
+}

@@ -1,0 +1,86 @@
+@use "./src/styles/variables" as *;
+
+.wrapperHeader {
+  width: 100%;
+  height: 80px;
+
+  background: $color_bg_secondary;
+}
+
+.containerHeader {
+  @extend .wrapperHeader;
+  padding: 2rem;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  position: fixed;
+  top: 0;
+  z-index: 100;
+}
+
+.logo {
+  width: 5rem;
+  height: auto;
+  cursor: pointer;
+}
+
+.containerNavigation {
+  color: $color_text_white;
+
+  display: flex;
+  gap: 1rem;
+}
+
+.defaultPage {
+  position: relative;
+  letter-spacing: 2px;
+  font-size: calc(14px + (18 - 14) * (100vw - 768px) / (1920 - 768));
+  cursor: pointer;
+  color: $color_text_white;
+  transition: color 0.3s ease;
+
+  &::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -4px;
+    width: 0%;
+    height: 2px;
+    background-color: $color_purple;
+    transition: width 0.5s ease;
+  }
+
+  &:hover {
+    color: $color_purple;
+
+    &::after {
+      width: 100%;
+    }
+  }
+}
+
+.activePage {
+  @extend .defaultPage;
+  color: $color_purple;
+}
+
+.burger {
+  width: $icon_w_h;
+  height: $icon_w_h;
+
+  &:hover {
+    cursor: pointer;
+  }
+}
+
+.navbar {
+  width: 100%;
+  height: 100vh;
+
+  background-color: #6E84BD;
+
+  position: absolute;
+  z-index: 1000;
+}

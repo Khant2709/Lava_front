@@ -1,0 +1,85 @@
+@use "./src/styles/variables" as *;
+@use "./src/styles/functions" as *;
+@use "./src/styles/mixins" as *;
+
+.window {
+  @include modal_window;
+  background-color: $color_bg_secondary;
+}
+
+.containerModal {
+  max-width: 600px;
+  padding: 2rem;
+  text-align: center;
+
+  border: 1px solid $color_purple_50;
+  border-radius: $border_r;
+  background-color: $color_bg_1;
+
+  @include flex_col;
+  align-items: center;
+  gap: 2rem;
+
+  @media (max-width: 480px) {
+    gap: 1.5rem;
+  }
+}
+
+.age {
+  font-size: fluid-size(32, 48);
+  font-weight: bold;
+  color: $color_purple;
+}
+
+.title {
+  font-size: fluid-size(20, 28);
+}
+
+.text {
+  text-align: center;
+  font-size: fluid-size(14, 18);
+}
+
+.containerButtons {
+  width: 100%;
+  @include flex_col;
+  gap: 1rem;
+
+  button {
+    color: white;
+    font-size: fluid-size(14, 18);
+
+    padding: 12px 1rem;
+    border-radius: $border_r;
+    border: none;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+
+    cursor: pointer;
+  }
+}
+
+.successButton {
+  background-color: $color_purple;
+
+  &:hover {
+    background-color: $color_purple_50;
+  }
+}
+
+.outButton {
+  background-color: $color_bg_1;
+
+  &:hover {
+    background-color: $color_bg_2;
+  }
+}
+
+
+.subtext {
+  font-size: 14px;
+  color: $color_text_grey;
+}

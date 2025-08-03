@@ -1,0 +1,49 @@
+@use "../../styles/variables" as *;
+@use "../../styles/functions" as *;
+@use "../../styles/mixins" as *;
+@use "../../styles/mixinsForm" as *;
+
+.form {
+  width: 70%;
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 2rem 3rem;
+  background: $gradient_card;
+  border-radius: $border_r;
+  gap: 2rem;
+  @include flex_col;
+
+  .title {
+    font-size: fluid-size(18, 28);
+    margin-bottom: 1rem;
+    color: $color_text_white;
+
+    @media (max-width: 768px) {
+      margin-bottom: 0;
+    }
+  }
+
+  .field {
+    @include form_field;
+  }
+
+  .checkboxField {
+    @include form_checkbox_field;
+  }
+
+  .error {
+    @include form_error_field;
+  }
+}
+
+.large {
+  max-width: 800px;
+}
+
+// Адаптивность
+@media (max-width: 600px) {
+  .form {
+    padding: 15px;
+    width: 100%;
+  }
+}

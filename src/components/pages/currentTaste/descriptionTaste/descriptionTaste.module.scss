@@ -1,0 +1,36 @@
+@use "./src/styles/variables" as *;
+@use "./src/styles/functions" as *;
+@use "./src/styles/mixins" as *;
+
+.container {
+  width: 100%;
+
+  @include flex_col;
+  gap: 1.5rem;
+}
+
+.subtitle {
+  font-size: fluid-size(20, 24);
+  font-weight: 400;
+
+  span {
+    color: $color_purple;
+  }
+}
+
+.text {
+  font-size: fluid-size(14, 20);
+  text-indent: 16px;
+}
+
+.list {
+  font-size: fluid-size(14, 20);
+  margin-left: 2rem;
+
+  @include flex_col;
+  gap: 8px;
+
+  span {
+    color: $color_text_grey;
+  }
+}
